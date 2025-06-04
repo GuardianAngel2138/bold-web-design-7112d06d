@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Code2, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -36,7 +35,7 @@ const Navigation = () => {
         customClass: {
           popup: 'rounded-xl shadow-2xl',
           title: 'text-xl font-bold',
-          content: 'text-gray-600'
+          htmlContainer: 'text-gray-600'
         }
       }).then((result) => {
         if (result.isConfirmed) {
