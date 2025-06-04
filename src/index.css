@@ -136,7 +136,7 @@ html {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-/* Hover glow effect */
+/* Enhanced hover glow effect */
 .hover-glow {
   transition: all 0.3s ease;
 }
@@ -144,4 +144,91 @@ html {
 .hover-glow:hover {
   box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
   transform: translateY(-2px);
+}
+
+/* Mobile-optimized animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Enhanced mobile touch animations */
+@media (max-width: 768px) {
+  .hover-glow:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Loading pulse animation */
+@keyframes loading-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+.loading-pulse {
+  animation: loading-pulse 2s ease-in-out infinite;
+}
+
+/* Enhanced button animations */
+button {
+  transition: all 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Form focus animations */
+input:focus, textarea:focus, select:focus {
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+}
+
+/* Card hover animations */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* CTA button enhanced animations */
+.cta-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.cta-button:hover::before {
+  left: 100%;
 }

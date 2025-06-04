@@ -1,10 +1,13 @@
 
-import React, { useEffect, useRef } from 'react';
-import { ArrowRight, Play, Star } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ArrowRight, Play, Star, Loader2, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Swal from 'sweetalert2';
 
 const HeroSection = () => {
   const typedTextRef = useRef<HTMLSpanElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [playLoading, setPlayLoading] = useState(false);
 
   useEffect(() => {
     const text = "Modern Web Solutions";
@@ -20,11 +23,71 @@ const HeroSection = () => {
         }
       };
       
-      // Clear existing text
       typedElement.innerHTML = "";
       typeWriter();
     }
   }, []);
+
+  const handleStartProject = async () => {
+    setIsLoading(true);
+    
+    setTimeout(() => {
+      setIsLoading(false);
+      Swal.fire({
+        title: '🚀 Ready to Launch Your Project?',
+        html: `
+          <div class="text-left space-y-4">
+            <p class="text-gray-600">Choose how you'd like to get started:</p>
+            <div class="grid grid-cols-1 gap-3">
+              <div class="p-3 border rounded-lg hover:bg-blue-50 cursor-pointer transition-colors" onclick="Swal.close(); document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
+                <div class="font-semibold text-blue-600">💬 Free Consultation</div>
+                <div class="text-sm text-gray-500">Discuss your project requirements</div>
+              </div>
+              <div class="p-3 border rounded-lg hover:bg-purple-50 cursor-pointer transition-colors" onclick="Swal.close(); document.getElementById('services').scrollIntoView({behavior: 'smooth'});">
+                <div class="font-semibold text-purple-600">📋 View Our Services</div>
+                <div class="text-sm text-gray-500">Explore our service packages</div>
+              </div>
+              <div class="p-3 border rounded-lg hover:bg-green-50 cursor-pointer transition-colors" onclick="Swal.close(); document.getElementById('portfolio').scrollIntoView({behavior: 'smooth'});">
+                <div class="font-semibold text-green-600">🎨 See Our Work</div>
+                <div class="text-sm text-gray-500">Browse our portfolio</div>
+              </div>
+            </div>
+          </div>
+        `,
+        showConfirmButton: false,
+        showCloseButton: true,
+        width: '500px',
+        customClass: {
+          popup: 'rounded-xl shadow-2xl',
+          closeButton: 'text-gray-400 hover:text-gray-600'
+        }
+      });
+    }, 1000);
+  };
+
+  const handleWatchDemo = async () => {
+    setPlayLoading(true);
+    
+    setTimeout(() => {
+      setPlayLoading(false);
+      Swal.fire({
+        title: '🎬 Demo Coming Soon!',
+        text: 'Our interactive demo is currently in production. Would you like to schedule a live demo instead?',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonText: 'Schedule Live Demo',
+        cancelButtonText: 'Maybe Later',
+        confirmButtonColor: '#3B82F6',
+        customClass: {
+          popup: 'rounded-xl shadow-2xl'
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }, 800);
+  };
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -38,9 +101,10 @@ const HeroSection = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="animate-fade-in">
           {/* Badge */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8">
-            <Star className="w-4 h-4 mr-2" />
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8 hover:bg-blue-200 transition-colors duration-200">
+            <Star className="w-4 h-4 mr-2 animate-pulse" />
             Trusted by 500+ Clients Worldwide
+            <Sparkles className="w-4 h-4 ml-2 text-yellow-500" />
           </div>
 
           {/* Main heading */}
@@ -62,38 +126,60 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg hover-glow"
+              onClick={handleStartProject}
+              disabled={isLoading}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg hover-glow relative overflow-hidden group"
             >
-              Start Your Project
-              <ArrowRight className="ml-2 w-5 h-5" />
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 w-5 h-5 animate-spin" />
+                  Loading...
+                </>
+              ) : (
+                <>
+                  Start Your Project
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                </>
+              )}
             </Button>
             
             <Button 
               variant="outline" 
               size="lg" 
-              className="border-2 border-gray-300 hover:border-blue-500 px-8 py-3 text-lg group"
+              onClick={handleWatchDemo}
+              disabled={playLoading}
+              className="border-2 border-gray-300 hover:border-blue-500 px-8 py-3 text-lg group relative"
             >
-              <Play className="mr-2 w-5 h-5 group-hover:text-blue-600" />
-              Watch Demo
+              {playLoading ? (
+                <>
+                  <Loader2 className="mr-2 w-5 h-5 animate-spin" />
+                  Loading...
+                </>
+              ) : (
+                <>
+                  <Play className="mr-2 w-5 h-5 group-hover:text-blue-600 transition-colors duration-200" />
+                  Watch Demo
+                </>
+              )}
             </Button>
           </div>
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">500+</div>
+            <div className="text-center group cursor-pointer">
+              <div className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-200">500+</div>
               <div className="text-sm text-gray-600">Projects Completed</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">98%</div>
+            <div className="text-center group cursor-pointer">
+              <div className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-200">98%</div>
               <div className="text-sm text-gray-600">Client Satisfaction</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">50+</div>
+            <div className="text-center group cursor-pointer">
+              <div className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-200">50+</div>
               <div className="text-sm text-gray-600">Team Members</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">5+</div>
+            <div className="text-center group cursor-pointer">
+              <div className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-200">5+</div>
               <div className="text-sm text-gray-600">Years Experience</div>
             </div>
           </div>
