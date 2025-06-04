@@ -16,6 +16,7 @@ const ParticlesBackground = () => {
   return (
     <Particles
       id="tsparticles"
+      init={particlesInit}
       particlesLoaded={particlesLoaded}
       options={{
         background: {
@@ -24,6 +25,28 @@ const ParticlesBackground = () => {
           },
         },
         fpsLimit: 120,
+        interactivity: {
+          events: {
+            onClick: {
+              enable: true,
+              mode: "push",
+            },
+            onHover: {
+              enable: true,
+              mode: "repulse",
+            },
+            resize: true,
+          },
+          modes: {
+            push: {
+              quantity: 4,
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4,
+            },
+          },
+        },
         particles: {
           color: {
             value: ["#3B82F6", "#8B5CF6", "#06B6D4"],
@@ -32,35 +55,34 @@ const ParticlesBackground = () => {
             color: "#3B82F6",
             distance: 150,
             enable: true,
-            opacity: 0.2,
+            opacity: 0.3,
             width: 1,
           },
           move: {
-            enable: true,
-            speed: 1,
             direction: "none",
-            random: false,
-            straight: false,
+            enable: true,
             outModes: {
               default: "bounce",
             },
+            random: false,
+            speed: 2,
+            straight: false,
           },
           number: {
             density: {
               enable: true,
-              width: 1920,
-              height: 1080,
+              area: 800,
             },
-            value: 50,
+            value: 80,
           },
           opacity: {
-            value: 0.3,
+            value: 0.5,
           },
           shape: {
             type: "circle",
           },
           size: {
-            value: { min: 1, max: 3 },
+            value: { min: 1, max: 5 },
           },
         },
         detectRetina: true,

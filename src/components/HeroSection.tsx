@@ -4,7 +4,7 @@ import { ArrowRight, Play, Star, Loader2, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Swal from 'sweetalert2';
 import ParticlesBackground from './ParticlesBackground';
-import AnimatedCounter from './AnimatedCounter';
+import GlobalCounters from './GlobalCounters';
 
 const HeroSection = () => {
   const typedTextRef = useRef<HTMLSpanElement>(null);
@@ -169,41 +169,8 @@ const HeroSection = () => {
             </Button>
           </div>
 
-          {/* Animated Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
-            <div className="text-center group cursor-pointer">
-              <AnimatedCounter 
-                end={500} 
-                suffix="+" 
-                className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-200" 
-              />
-              <div className="text-sm text-gray-600">Projects Completed</div>
-            </div>
-            <div className="text-center group cursor-pointer">
-              <AnimatedCounter 
-                end={98} 
-                suffix="%" 
-                className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-200" 
-              />
-              <div className="text-sm text-gray-600">Client Satisfaction</div>
-            </div>
-            <div className="text-center group cursor-pointer">
-              <AnimatedCounter 
-                end={50} 
-                suffix="+" 
-                className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-200" 
-              />
-              <div className="text-sm text-gray-600">Team Members</div>
-            </div>
-            <div className="text-center group cursor-pointer">
-              <AnimatedCounter 
-                end={5} 
-                suffix="+" 
-                className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-200" 
-              />
-              <div className="text-sm text-gray-600">Years Experience</div>
-            </div>
-          </div>
+          {/* Global Counters */}
+          <GlobalCounters className="max-w-4xl mx-auto" />
         </div>
       </div>
 
