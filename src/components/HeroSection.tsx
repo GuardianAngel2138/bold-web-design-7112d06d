@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Play, Star, Loader2, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Swal from 'sweetalert2';
+import ParticlesBackground from './ParticlesBackground';
+import AnimatedCounter from './AnimatedCounter';
 
 const HeroSection = () => {
   const typedTextRef = useRef<HTMLSpanElement>(null);
@@ -91,8 +93,11 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Particles Background */}
+      <ParticlesBackground />
+      
       {/* Animated background elements */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 z-2">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
         <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{ animationDelay: '2s' }}></div>
         <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-cyan-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{ animationDelay: '4s' }}></div>
@@ -164,22 +169,38 @@ const HeroSection = () => {
             </Button>
           </div>
 
-          {/* Stats */}
+          {/* Animated Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
             <div className="text-center group cursor-pointer">
-              <div className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-200">500+</div>
+              <AnimatedCounter 
+                end={500} 
+                suffix="+" 
+                className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-200" 
+              />
               <div className="text-sm text-gray-600">Projects Completed</div>
             </div>
             <div className="text-center group cursor-pointer">
-              <div className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-200">98%</div>
+              <AnimatedCounter 
+                end={98} 
+                suffix="%" 
+                className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-200" 
+              />
               <div className="text-sm text-gray-600">Client Satisfaction</div>
             </div>
             <div className="text-center group cursor-pointer">
-              <div className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-200">50+</div>
+              <AnimatedCounter 
+                end={50} 
+                suffix="+" 
+                className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-200" 
+              />
               <div className="text-sm text-gray-600">Team Members</div>
             </div>
             <div className="text-center group cursor-pointer">
-              <div className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-200">5+</div>
+              <AnimatedCounter 
+                end={5} 
+                suffix="+" 
+                className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-200" 
+              />
               <div className="text-sm text-gray-600">Years Experience</div>
             </div>
           </div>
@@ -187,7 +208,7 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
         <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-bounce"></div>
         </div>
