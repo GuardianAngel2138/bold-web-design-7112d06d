@@ -21,6 +21,13 @@ const HeroSection = () => {
           typedElement.innerHTML += text.charAt(i);
           i++;
           setTimeout(typeWriter, 100);
+        } else {
+          // Restart typing animation after completion
+          setTimeout(() => {
+            typedElement.innerHTML = "";
+            i = 0;
+            typeWriter();
+          }, 3000);
         }
       };
       
@@ -106,12 +113,12 @@ const HeroSection = () => {
         <div>
           {/* Badge */}
           <div 
-            className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8 hover:bg-blue-200 transition-colors duration-200"
+            className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8 hover:bg-blue-200 transition-colors duration-200 text-float"
             data-aos="fade-down"
             data-aos-delay="300"
           >
             <Star className="w-4 h-4 mr-2 animate-pulse" />
-            Trusted by 500+ Clients Worldwide
+            <span className="text-shimmer">Trusted by 500+ Clients Worldwide</span>
             <Sparkles className="w-4 h-4 ml-2 text-yellow-500" />
           </div>
 
@@ -121,7 +128,7 @@ const HeroSection = () => {
             data-aos="fade-up"
             data-aos-delay="500"
           >
-            We Create{' '}
+            <span className="text-sparkle text-pulse-glow">We Create</span>{' '}
             <span className="gradient-text">
               <span ref={typedTextRef}></span>
               <span className="animate-pulse">|</span>
@@ -130,12 +137,12 @@ const HeroSection = () => {
 
           {/* Subtitle */}
           <p 
-            className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed text-wobble"
             data-aos="fade-up"
             data-aos-delay="700"
           >
-            Transform your digital presence with cutting-edge web development, 
-            stunning design, and innovative solutions that drive results.
+            Transform your <span className="text-sparkle">digital presence</span> with cutting-edge web development, 
+            stunning <span className="gradient-text">design</span>, and innovative solutions that drive results.
           </p>
 
           {/* CTA Buttons */}
@@ -148,7 +155,7 @@ const HeroSection = () => {
               size="lg" 
               onClick={handleStartProject}
               disabled={isLoading}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg hover-glow relative overflow-hidden group"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg hover-glow relative overflow-hidden group cta-button"
             >
               {isLoading ? (
                 <>
@@ -157,7 +164,7 @@ const HeroSection = () => {
                 </>
               ) : (
                 <>
-                  Start Your Project
+                  <span className="text-shimmer">Start Your Project</span>
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                 </>
               )}
@@ -178,7 +185,7 @@ const HeroSection = () => {
               ) : (
                 <>
                   <Play className="mr-2 w-5 h-5 group-hover:text-blue-600 transition-colors duration-200" />
-                  Watch Demo
+                  <span className="gradient-text">Watch Demo</span>
                 </>
               )}
             </Button>

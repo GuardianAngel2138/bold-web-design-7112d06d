@@ -59,26 +59,28 @@ const AboutSection = () => {
         {/* Header */}
         <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            About <span className="gradient-text">TechCraft Solutions</span>
+            <span className="text-sparkle">About</span> <span className="gradient-text">TechCraft Solutions</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            We are a passionate team of developers, designers, and innovators dedicated to 
-            transforming ideas into powerful digital experiences that drive business growth.
+            We are a <span className="text-shimmer">passionate team</span> of developers, designers, and innovators dedicated to 
+            transforming ideas into <span className="gradient-text">powerful digital experiences</span> that drive business growth.
           </p>
         </div>
 
         {/* Company Story */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
           <div data-aos="fade-right" data-aos-delay="200">
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h3>
+            <h3 className="text-3xl font-bold text-gray-900 mb-6">
+              <span className="text-sparkle">Our Story</span>
+            </h3>
             <p className="text-gray-600 mb-6 leading-relaxed">
-              Founded in 2019, TechCraft Solutions emerged from a simple vision: to bridge the gap 
-              between innovative technology and real-world business needs. What started as a small 
+              Founded in 2019, <span className="gradient-text">TechCraft Solutions</span> emerged from a simple vision: to bridge the gap 
+              between <span className="text-shimmer">innovative technology</span> and real-world business needs. What started as a small 
               team of passionate developers has grown into a full-service digital agency.
             </p>
             <p className="text-gray-600 mb-6 leading-relaxed">
-              We've successfully delivered over 500 projects, ranging from simple websites to 
-              complex enterprise applications. Our commitment to excellence and innovation has 
+              We've successfully delivered over <span className="text-sparkle">500 projects</span>, ranging from simple websites to 
+              complex enterprise applications. Our commitment to <span className="gradient-text">excellence and innovation</span> has 
               earned us the trust of clients across various industries.
             </p>
             <div className="flex items-center space-x-6">
@@ -105,7 +107,7 @@ const AboutSection = () => {
         {/* Values */}
         <div className="mb-20">
           <h3 className="text-3xl font-bold text-gray-900 text-center mb-12" data-aos="fade-up">
-            Our Core Values
+            Our <span className="gradient-text">Core Values</span>
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
@@ -117,7 +119,9 @@ const AboutSection = () => {
               >
                 <CardContent className="p-6">
                   <value.icon className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                  <h4 className="text-xl font-semibold text-gray-900 mb-3">{value.title}</h4>
+                  <h4 className="text-xl font-semibold text-gray-900 mb-3">
+                    <span className="text-shimmer">{value.title}</span>
+                  </h4>
                   <p className="text-gray-600">{value.description}</p>
                 </CardContent>
               </Card>
@@ -128,7 +132,7 @@ const AboutSection = () => {
         {/* Team */}
         <div>
           <h3 className="text-3xl font-bold text-gray-900 text-center mb-12" data-aos="fade-up">
-            Meet Our Leadership Team
+            Meet Our <span className="gradient-text">Leadership Team</span>
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {team.map((member, index) => (
@@ -147,7 +151,9 @@ const AboutSection = () => {
                     />
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
                   </div>
-                  <h4 className="text-xl font-semibold text-gray-900 mb-1">{member.name}</h4>
+                  <h4 className="text-xl font-semibold text-gray-900 mb-1">
+                    <span className="text-sparkle">{member.name}</span>
+                  </h4>
                   <p className="text-blue-600 font-medium mb-2">{member.role}</p>
                   <p className="text-sm text-gray-600">{member.expertise}</p>
                 </CardContent>
