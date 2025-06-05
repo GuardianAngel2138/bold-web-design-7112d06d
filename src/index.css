@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -128,7 +127,7 @@ html {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradient-shift 3s ease-in-out infinite, sparkle 2s ease-in-out infinite;
+  animation: gradient-shift 6s ease-in-out infinite, sparkle 4s ease-in-out infinite;
   position: relative;
 }
 
@@ -141,11 +140,11 @@ html {
   bottom: 0;
   background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.5) 50%, transparent 70%);
   background-size: 200% 200%;
-  animation: sparkle-sweep 3s linear infinite;
+  animation: sparkle-sweep 6s linear infinite;
   pointer-events: none;
 }
 
-/* Enhanced text animations with infinite repeat */
+/* Enhanced text animations with slower infinite repeat */
 @keyframes gradient-shift {
   0%, 100% {
     background-position: 0% 50%;
@@ -214,14 +213,14 @@ html {
   }
 }
 
-/* Text animation classes with infinite repeat */
+/* Text animation classes with slower infinite repeat */
 .text-shimmer {
   background: linear-gradient(90deg, #667eea 25%, #764ba2 50%, #f093fb 75%, #667eea 100%);
   background-size: 400% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer 3s infinite linear;
+  animation: shimmer 5s infinite linear;
 }
 
 @keyframes shimmer {
@@ -234,7 +233,7 @@ html {
 }
 
 .text-bounce-in {
-  animation: bounceIn 2s ease-out infinite;
+  animation: bounceIn 4s ease-out infinite;
 }
 
 @keyframes bounceIn {
@@ -265,7 +264,7 @@ html {
 }
 
 .text-slide-up {
-  animation: slideUp 2s ease-out infinite;
+  animation: slideUp 4s ease-out infinite;
 }
 
 @keyframes slideUp {
@@ -283,14 +282,14 @@ html {
   }
 }
 
-/* New sparkling text effects */
+/* New sparkling text effects with slower timing */
 .text-sparkle {
   background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd, #98d8c8);
   background-size: 700% 700%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: rainbow-sparkle 4s ease-in-out infinite;
+  animation: rainbow-sparkle 8s ease-in-out infinite;
   position: relative;
 }
 
@@ -326,7 +325,7 @@ html {
 }
 
 .text-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+  animation: pulse-glow 4s ease-in-out infinite;
 }
 
 @keyframes pulse-glow {
@@ -391,10 +390,10 @@ html {
 }
 
 .loading-pulse {
-  animation: loading-pulse 2s ease-in-out infinite;
+  animation: loading-pulse 3s ease-in-out infinite;
 }
 
-/* Float animation for background elements */
+/* Float animation for background elements with slower timing */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -405,7 +404,7 @@ html {
 }
 
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 8s ease-in-out infinite;
 }
 
 /* Enhanced button animations */
@@ -458,9 +457,9 @@ input:focus, textarea:focus, select:focus {
   left: 100%;
 }
 
-/* Continuous floating animations for text */
+/* Continuous floating animations for text with slower timing */
 .text-float {
-  animation: text-float 4s ease-in-out infinite;
+  animation: text-float 6s ease-in-out infinite;
 }
 
 @keyframes text-float {
@@ -473,7 +472,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 .text-wobble {
-  animation: wobble 3s ease-in-out infinite;
+  animation: wobble 5s ease-in-out infinite;
 }
 
 @keyframes wobble {

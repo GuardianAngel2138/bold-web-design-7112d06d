@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Play, Star, Loader2, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -20,14 +21,14 @@ const HeroSection = () => {
         if (i < text.length) {
           typedElement.innerHTML += text.charAt(i);
           i++;
-          setTimeout(typeWriter, 100);
+          setTimeout(typeWriter, 150);
         } else {
-          // Restart typing animation after completion
+          // Hold the complete text for longer before restarting
           setTimeout(() => {
             typedElement.innerHTML = "";
             i = 0;
             typeWriter();
-          }, 3000);
+          }, 8000); // Wait 8 seconds before restarting
         }
       };
       
@@ -102,11 +103,11 @@ const HeroSection = () => {
       {/* Particles Background */}
       <ParticlesBackground />
       
-      {/* Animated background elements */}
+      {/* Animated background elements with slower timing */}
       <div className="absolute inset-0 z-2">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
-        <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-cyan-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-cyan-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{ animationDelay: '6s' }}></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
