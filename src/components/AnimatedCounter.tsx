@@ -19,7 +19,7 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
 
   return (
     <div ref={ref} className={className}>
-      {count}{suffix}
+      {count.toLocaleString()}{suffix}
     </div>
   );
 };

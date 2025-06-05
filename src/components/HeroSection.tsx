@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Play, Star, Loader2, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -189,17 +190,6 @@ const HeroSection = () => {
           <div data-aos="fade-up" data-aos-delay="1100">
             <GlobalCounters className="max-w-4xl mx-auto" />
           </div>
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
-        data-aos="fade-up"
-        data-aos-delay="1300"
-      >
-        <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-bounce"></div>
         </div>
       </div>
     </section>

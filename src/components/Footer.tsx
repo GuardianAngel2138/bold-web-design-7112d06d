@@ -109,13 +109,13 @@ const Footer = () => {
             </p>
             
             {/* Newsletter Form */}
-            <div className="flex mb-6">
+            <div className="flex flex-col sm:flex-row gap-2 mb-6">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l-md focus:outline-none focus:border-blue-500 text-white"
+                className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-blue-500 text-white min-w-0"
               />
-              <Button className="bg-blue-600 hover:bg-blue-700 rounded-l-none">
+              <Button className="bg-blue-600 hover:bg-blue-700 whitespace-nowrap">
                 Subscribe
               </Button>
             </div>
