@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Play, Star, Loader2, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -104,16 +103,24 @@ const HeroSection = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="animate-fade-in">
+        <div>
           {/* Badge */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8 hover:bg-blue-200 transition-colors duration-200">
+          <div 
+            className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8 hover:bg-blue-200 transition-colors duration-200"
+            data-aos="fade-down"
+            data-aos-delay="300"
+          >
             <Star className="w-4 h-4 mr-2 animate-pulse" />
             Trusted by 500+ Clients Worldwide
             <Sparkles className="w-4 h-4 ml-2 text-yellow-500" />
           </div>
 
           {/* Main heading */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6">
+          <h1 
+            className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
             We Create{' '}
             <span className="gradient-text">
               <span ref={typedTextRef}></span>
@@ -122,13 +129,21 @@ const HeroSection = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p 
+            className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
+            data-aos="fade-up"
+            data-aos-delay="700"
+          >
             Transform your digital presence with cutting-edge web development, 
             stunning design, and innovative solutions that drive results.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <div 
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+            data-aos="fade-up"
+            data-aos-delay="900"
+          >
             <Button 
               size="lg" 
               onClick={handleStartProject}
@@ -170,12 +185,18 @@ const HeroSection = () => {
           </div>
 
           {/* Global Counters */}
-          <GlobalCounters className="max-w-4xl mx-auto" />
+          <div data-aos="fade-up" data-aos-delay="1100">
+            <GlobalCounters className="max-w-4xl mx-auto" />
+          </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+      <div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+        data-aos="fade-up"
+        data-aos-delay="1300"
+      >
         <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-bounce"></div>
         </div>

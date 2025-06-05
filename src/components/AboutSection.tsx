@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Users, Award, Target, Zap, Heart, Shield } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -58,7 +57,7 @@ const AboutSection = () => {
     <section id="about" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             About <span className="gradient-text">TechCraft Solutions</span>
           </h2>
@@ -70,7 +69,7 @@ const AboutSection = () => {
 
         {/* Company Story */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-          <div className="animate-slide-in-left">
+          <div data-aos="fade-right" data-aos-delay="200">
             <h3 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h3>
             <p className="text-gray-600 mb-6 leading-relaxed">
               Founded in 2019, TechCraft Solutions emerged from a simple vision: to bridge the gap 
@@ -94,7 +93,7 @@ const AboutSection = () => {
             </div>
           </div>
           
-          <div className="animate-slide-in-right">
+          <div data-aos="fade-left" data-aos-delay="400">
             <img 
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop" 
               alt="Team collaboration" 
@@ -105,10 +104,17 @@ const AboutSection = () => {
 
         {/* Values */}
         <div className="mb-20">
-          <h3 className="text-3xl font-bold text-gray-900 text-center mb-12">Our Core Values</h3>
+          <h3 className="text-3xl font-bold text-gray-900 text-center mb-12" data-aos="fade-up">
+            Our Core Values
+          </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
-              <Card key={index} className="text-center hover-glow cursor-pointer">
+              <Card 
+                key={index} 
+                className="text-center hover-glow cursor-pointer"
+                data-aos="fade-up"
+                data-aos-delay={200 + index * 100}
+              >
                 <CardContent className="p-6">
                   <value.icon className="w-12 h-12 text-blue-600 mx-auto mb-4" />
                   <h4 className="text-xl font-semibold text-gray-900 mb-3">{value.title}</h4>
@@ -121,10 +127,17 @@ const AboutSection = () => {
 
         {/* Team */}
         <div>
-          <h3 className="text-3xl font-bold text-gray-900 text-center mb-12">Meet Our Leadership Team</h3>
+          <h3 className="text-3xl font-bold text-gray-900 text-center mb-12" data-aos="fade-up">
+            Meet Our Leadership Team
+          </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {team.map((member, index) => (
-              <Card key={index} className="text-center hover-glow cursor-pointer">
+              <Card 
+                key={index} 
+                className="text-center hover-glow cursor-pointer"
+                data-aos="zoom-in"
+                data-aos-delay={200 + index * 150}
+              >
                 <CardContent className="p-6">
                   <div className="relative mb-4">
                     <img 

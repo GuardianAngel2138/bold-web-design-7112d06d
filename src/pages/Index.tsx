@@ -15,12 +15,13 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Initialize AOS
+    // Initialize AOS with enhanced settings
     AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
+      duration: 1000,
+      easing: 'ease-in-out-cubic',
       once: true,
-      offset: 100,
+      offset: 120,
+      delay: 100,
     });
 
     // Simulate loading time
@@ -38,22 +39,22 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      <div data-aos="fade-in">
+      <div data-aos="fade-up" data-aos-duration="1200">
         <HeroSection />
       </div>
-      <div data-aos="fade-up">
+      <div data-aos="fade-up" data-aos-delay="200">
         <AboutSection />
       </div>
-      <div data-aos="fade-up">
+      <div data-aos="fade-up" data-aos-delay="300">
         <ServicesSection />
       </div>
-      <div data-aos="fade-up">
+      <div data-aos="fade-up" data-aos-delay="400">
         <PortfolioSection />
       </div>
-      <div data-aos="fade-up">
+      <div data-aos="fade-up" data-aos-delay="500">
         <ContactSection />
       </div>
-      <div data-aos="fade-up">
+      <div data-aos="fade-up" data-aos-delay="600">
         <Footer />
       </div>
     </div>
