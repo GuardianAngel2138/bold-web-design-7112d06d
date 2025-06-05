@@ -61,14 +61,14 @@ const GlobalCounters: React.FC<GlobalCountersProps> = ({
       {counters.map((counter, index) => (
         <div key={index} className="text-center group cursor-pointer">
           {showIcons && (
-            <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-200">
+            <div className="text-2xl mb-2 transition-transform duration-200">
               {counter.icon}
             </div>
           )}
           <AnimatedCounter 
             end={counter.end} 
             suffix={counter.suffix} 
-            className={`text-3xl font-bold mb-2 group-hover:${counter.color} transition-colors duration-200`} 
+            className={`text-3xl font-bold mb-2 transition-colors duration-200`} 
           />
           <div className="text-sm text-gray-600">{counter.label}</div>
         </div>

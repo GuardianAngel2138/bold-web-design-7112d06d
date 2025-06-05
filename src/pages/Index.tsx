@@ -15,11 +15,11 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Initialize AOS with enhanced settings
+    // Initialize AOS with enhanced settings and repeat animations
     AOS.init({
       duration: 1000,
       easing: 'ease-in-out-cubic',
-      once: true,
+      once: false, // Changed to false so animations repeat
       offset: 120,
       delay: 100,
     });

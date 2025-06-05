@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Play, Star, Loader2, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -22,14 +21,8 @@ const HeroSection = () => {
           typedElement.innerHTML += text.charAt(i);
           i++;
           setTimeout(typeWriter, 150);
-        } else {
-          // Hold the complete text for longer before restarting
-          setTimeout(() => {
-            typedElement.innerHTML = "";
-            i = 0;
-            typeWriter();
-          }, 8000); // Wait 8 seconds before restarting
         }
+        // Remove the restart logic - just complete once
       };
       
       typedElement.innerHTML = "";
@@ -114,7 +107,7 @@ const HeroSection = () => {
         <div>
           {/* Badge */}
           <div 
-            className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8 hover:bg-blue-200 transition-colors duration-200 text-float"
+            className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8 hover:bg-blue-200 transition-colors duration-200"
             data-aos="fade-down"
             data-aos-delay="300"
           >
@@ -138,7 +131,7 @@ const HeroSection = () => {
 
           {/* Subtitle */}
           <p 
-            className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed text-wobble"
+            className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
             data-aos="fade-up"
             data-aos-delay="700"
           >
