@@ -42,7 +42,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
               <Code2 className="h-8 w-8 text-blue-400" />
-              <span className="text-xl font-bold">Avensora</span>
+              <span className="text-xl font-bold text-shimmer">Avensora</span>
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
               We're a passionate team of developers and designers creating innovative 
@@ -114,7 +114,7 @@ const Footer = () => {
                 placeholder="Enter your email"
                 className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-blue-500 text-white min-w-0"
               />
-              <Button className="bg-blue-600 hover:bg-blue-700 whitespace-nowrap">
+              <Button className="bg-blue-600 hover:bg-blue-700 whitespace-nowrap button-shimmer">
                 Subscribe
               </Button>
             </div>
@@ -146,7 +146,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2024 Avensora. All rights reserved.
+              © 2024 <span className="text-shimmer">Avensora</span>. All rights reserved.
             </div>
             
             <div className="flex items-center space-x-6">
@@ -165,7 +165,7 @@ const Footer = () => {
                 onClick={scrollToTop}
                 variant="outline"
                 size="sm"
-                className="border-gray-700 text-gray-400 hover:text-white hover:border-blue-500"
+                className="border-gray-700 text-gray-400 hover:text-white hover:border-blue-500 button-shimmer"
               >
                 <ArrowUp className="w-4 h-4" />
               </Button>

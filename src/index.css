@@ -173,6 +173,27 @@ html {
   transform: translateY(-2px);
 }
 
+/* Button shimmer effect on hover */
+.button-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 1000ms ease;
+}
+
+.button-shimmer:hover::before {
+  left: 100%;
+}
+
 /* Mobile-optimized animations */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -194,7 +215,7 @@ html {
   }
 }
 
-/* Float animation for background elements */
+/* Float animation for backgroun elements */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -257,3 +278,19 @@ input:focus, textarea:focus, select:focus {
 .cta-button:hover::before {
   left: 100%;
 }
+
+/* Card flex layout for button alignment */
+.card-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-content-body {
+  flex-grow: 1;
+}
+
+.card-content-footer {
+  margin-top: auto;
+}
+

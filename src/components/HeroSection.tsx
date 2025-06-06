@@ -122,7 +122,8 @@ const HeroSection = () => {
             data-aos="fade-up"
             data-aos-delay="300"
           >
-            <span className="text-gray-900">We Create</span>{' '}
+            <span className="text-shimmer">Avensora</span>{' '}
+            <span className="text-gray-900">Creates</span>{' '}
             <span className="text-shimmer">
               <span ref={typedTextRef}></span>
               <span className="animate-pulse">|</span>
@@ -149,7 +150,7 @@ const HeroSection = () => {
               size="lg" 
               onClick={handleStartProject}
               disabled={isLoading}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg hover-glow relative overflow-hidden group cta-button"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg hover-glow relative overflow-hidden group button-shimmer"
             >
               {isLoading ? (
                 <>
@@ -169,7 +170,7 @@ const HeroSection = () => {
               size="lg" 
               onClick={handleWatchDemo}
               disabled={playLoading}
-              className="border-2 border-gray-300 hover:border-blue-500 px-8 py-3 text-lg group relative"
+              className="border-2 border-gray-300 hover:border-blue-500 px-8 py-3 text-lg group relative button-shimmer"
             >
               {playLoading ? (
                 <>

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Code2, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -64,7 +65,7 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <Code2 className="h-8 w-8 text-blue-600" />
-            <span className="text-xl font-bold gradient-text">TechCraft Solutions</span>
+            <span className="text-xl font-bold text-shimmer">Avensora</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -87,7 +88,7 @@ const Navigation = () => {
             <Button 
               onClick={handleGetStarted}
               disabled={isLoading}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white relative overflow-hidden"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white relative overflow-hidden button-shimmer"
             >
               {isLoading ? (
                 <>
@@ -131,7 +132,7 @@ const Navigation = () => {
             <Button 
               onClick={handleGetStarted}
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white button-shimmer"
             >
               {isLoading ? (
                 <>

@@ -49,7 +49,7 @@ const AboutSection = () => {
         {/* Header */}
         <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            <span className="gradient-text">About</span> <span className="text-gray-900">Avensora</span>
+            <span className="text-gray-900">About</span> <span className="text-shimmer">Avensora</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             We are a passionate team of developers, designers, and innovators dedicated to 
@@ -64,7 +64,7 @@ const AboutSection = () => {
               Our <span className="gradient-text">Story</span>
             </h3>
             <p className="text-gray-600 mb-6 leading-relaxed">
-              Founded in 2019, <span className="text-gray-900">Avensora</span> emerged from a simple vision: to bridge the gap 
+              Founded in 2019, <span className="text-shimmer">Avensora</span> emerged from a simple vision: to bridge the gap 
               between innovative technology and real-world business needs. What started as a small 
               team of passionate developers has grown into a full-service digital agency.
             </p>
@@ -97,12 +97,17 @@ const AboutSection = () => {
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => <Card key={index} className="text-center hover-glow cursor-pointer" data-aos="fade-up" data-aos-delay={200 + index * 100}>
-                <CardContent className="p-6">
-                  <value.icon className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                  <h4 className="text-xl font-semibold text-gray-900 mb-3">
-                    <span className="text-gray-900">{value.title}</span>
-                  </h4>
-                  <p className="text-gray-600">{value.description}</p>
+                <CardContent className="p-6 card-content-wrapper">
+                  <div className="card-content-body">
+                    <value.icon className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                    <h4 className="text-xl font-semibold text-gray-900 mb-3">
+                      <span className="text-gray-900">{value.title}</span>
+                    </h4>
+                    <p className="text-gray-600 mb-4">{value.description}</p>
+                  </div>
+                  <div className="card-content-footer">
+                    <Button className="w-full mt-2 button-shimmer">Learn More</Button>
+                  </div>
                 </CardContent>
               </Card>)}
           </div>
@@ -115,16 +120,21 @@ const AboutSection = () => {
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {team.map((member, index) => <Card key={index} className="text-center hover-glow cursor-pointer" data-aos="zoom-in" data-aos-delay={200 + index * 150}>
-                <CardContent className="p-6">
-                  <div className="relative mb-4">
-                    <img src={member.image} alt={member.name} className="w-24 h-24 rounded-full mx-auto object-cover" />
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
+                <CardContent className="p-6 card-content-wrapper">
+                  <div className="card-content-body">
+                    <div className="relative mb-4">
+                      <img src={member.image} alt={member.name} className="w-24 h-24 rounded-full mx-auto object-cover" />
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
+                    </div>
+                    <h4 className="text-xl font-semibold text-gray-900 mb-1">
+                      <span className="gradient-text">{member.name}</span>
+                    </h4>
+                    <p className="text-blue-600 font-medium mb-2">{member.role}</p>
+                    <p className="text-sm text-gray-600 mb-4">{member.expertise}</p>
                   </div>
-                  <h4 className="text-xl font-semibold text-gray-900 mb-1">
-                    <span className="gradient-text">{member.name}</span>
-                  </h4>
-                  <p className="text-blue-600 font-medium mb-2">{member.role}</p>
-                  <p className="text-sm text-gray-600">{member.expertise}</p>
+                  <div className="card-content-footer">
+                    <Button className="w-full mt-2 button-shimmer">View Profile</Button>
+                  </div>
                 </CardContent>
               </Card>)}
           </div>
