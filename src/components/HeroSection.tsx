@@ -12,7 +12,7 @@ const HeroSection = () => {
   const [playLoading, setPlayLoading] = useState(false);
 
   useEffect(() => {
-    const text = "Modern Web Solutions";
+    const text = "Digital Excellence";
     const typedElement = typedTextRef.current;
     
     if (typedElement) {
@@ -23,7 +23,6 @@ const HeroSection = () => {
           i++;
           setTimeout(typeWriter, 150);
         }
-        // Remove the restart logic - just complete once
       };
       
       typedElement.innerHTML = "";
@@ -97,7 +96,7 @@ const HeroSection = () => {
       {/* Particles Background */}
       <ParticlesBackground />
       
-      {/* Animated background elements with slower timing */}
+      {/* Animated background elements */}
       <div className="absolute inset-0 z-2">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
         <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{ animationDelay: '3s' }}></div>
@@ -110,10 +109,10 @@ const HeroSection = () => {
           <div 
             className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8 hover:bg-blue-200 transition-colors duration-200"
             data-aos="fade-down"
-            data-aos-delay="300"
+            data-aos-delay="200"
           >
-            <Star className="w-4 h-4 mr-2 animate-pulse" />
-            <span className="text-shimmer">Trusted by 500+ Clients Worldwide</span>
+            <Star className="w-4 h-4 mr-2" />
+            <span>Trusted by 500+ Clients Worldwide</span>
             <Sparkles className="w-4 h-4 ml-2 text-yellow-500" />
           </div>
 
@@ -121,9 +120,9 @@ const HeroSection = () => {
           <h1 
             className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6"
             data-aos="fade-up"
-            data-aos-delay="500"
+            data-aos-delay="300"
           >
-            <span className="text-sparkle text-pulse-glow">We Create</span>{' '}
+            <span className="text-gray-900">We Create</span>{' '}
             <span className="gradient-text">
               <span ref={typedTextRef}></span>
               <span className="animate-pulse">|</span>
@@ -134,17 +133,17 @@ const HeroSection = () => {
           <p 
             className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
             data-aos="fade-up"
-            data-aos-delay="700"
+            data-aos-delay="400"
           >
-            Transform your <span className="text-sparkle">digital presence</span> with cutting-edge web development, 
-            stunning <span className="gradient-text">design</span>, and innovative solutions that drive results.
+            Transform your digital presence with cutting-edge web development, 
+            stunning design, and innovative solutions that drive results.
           </p>
 
           {/* CTA Buttons */}
           <div 
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
             data-aos="fade-up"
-            data-aos-delay="900"
+            data-aos-delay="500"
           >
             <Button 
               size="lg" 
@@ -159,7 +158,7 @@ const HeroSection = () => {
                 </>
               ) : (
                 <>
-                  <span className="text-shimmer">Start Your Project</span>
+                  <span>Start Your Project</span>
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                 </>
               )}
@@ -187,7 +186,7 @@ const HeroSection = () => {
           </div>
 
           {/* Global Counters */}
-          <div data-aos="fade-up" data-aos-delay="1100">
+          <div data-aos="fade-up" data-aos-delay="600">
             <GlobalCounters className="max-w-4xl mx-auto" />
           </div>
         </div>

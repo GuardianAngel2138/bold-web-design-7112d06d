@@ -15,13 +15,13 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Initialize AOS with enhanced settings and repeat animations
+    // Initialize AOS with faster settings
     AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out-cubic',
-      once: false, // Changed to false so animations repeat
-      offset: 120,
-      delay: 100,
+      duration: 600,
+      easing: 'ease-in-out',
+      once: false,
+      offset: 80,
+      delay: 50,
     });
 
     // Simulate loading time
@@ -39,22 +39,22 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      <div data-aos="fade-up" data-aos-duration="1200">
+      <div data-aos="fade-up" data-aos-duration="800">
         <HeroSection />
       </div>
-      <div data-aos="fade-up" data-aos-delay="200">
+      <div data-aos="fade-up" data-aos-delay="100">
         <AboutSection />
       </div>
-      <div data-aos="fade-up" data-aos-delay="300">
+      <div data-aos="fade-up" data-aos-delay="150">
         <ServicesSection />
       </div>
-      <div data-aos="fade-up" data-aos-delay="400">
+      <div data-aos="fade-up" data-aos-delay="200">
         <PortfolioSection />
       </div>
-      <div data-aos="fade-up" data-aos-delay="500">
+      <div data-aos="fade-up" data-aos-delay="250">
         <ContactSection />
       </div>
-      <div data-aos="fade-up" data-aos-delay="600">
+      <div data-aos="fade-up" data-aos-delay="300">
         <Footer />
       </div>
     </div>

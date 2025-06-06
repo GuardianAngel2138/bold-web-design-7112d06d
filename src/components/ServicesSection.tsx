@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Code, Palette, Smartphone, Cloud, Search, ShoppingCart, Check, Star, Zap } from 'lucide-react';
+import { Code, Palette, Smartphone, Cloud, Search, ShoppingCart, Check, Star, Zap, Camera, Megaphone, TrendingUp } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -107,6 +106,65 @@ const ServicesSection = () => {
     }
   ];
 
+  const mediaPackages = [
+    {
+      name: "Social Media Starter",
+      price: "299",
+      period: "month",
+      description: "Perfect for small businesses starting their social media journey",
+      features: [
+        "2 social media platforms",
+        "8 posts per month",
+        "Basic content creation",
+        "Monthly analytics report",
+        "Community management",
+        "Brand guidelines"
+      ],
+      popular: false,
+      cta: "Get Started",
+      icon: Camera
+    },
+    {
+      name: "Digital Marketing Pro",
+      price: "699",
+      period: "month",
+      description: "Comprehensive digital marketing for growing businesses",
+      features: [
+        "4 social media platforms",
+        "20 posts per month",
+        "Video content creation",
+        "Paid ad management ($500 ad spend included)",
+        "Weekly analytics reports",
+        "Influencer outreach",
+        "Email marketing campaigns",
+        "SEO content optimization"
+      ],
+      popular: true,
+      cta: "Most Popular",
+      icon: Megaphone
+    },
+    {
+      name: "Enterprise Media",
+      price: "1,499",
+      period: "month",
+      description: "Full-scale digital media management for large organizations",
+      features: [
+        "Unlimited social platforms",
+        "Daily content creation",
+        "Professional video production",
+        "Advanced paid advertising",
+        "Real-time analytics dashboard",
+        "Crisis management",
+        "Brand monitoring",
+        "Dedicated account manager",
+        "Custom strategy development"
+      ],
+      popular: false,
+      cta: "Contact Us",
+      icon: TrendingUp
+    }
+  ];
+
   const offers = [
     {
       title: "Launch Week Special",
@@ -169,10 +227,65 @@ const ServicesSection = () => {
           ))}
         </div>
 
-        {/* Pricing Section */}
+        {/* Digital Media Management Section */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Pricing Packages</h3>
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">Digital Media Management</h3>
+            <p className="text-gray-600">Comprehensive social media and digital marketing solutions</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {mediaPackages.map((pkg, index) => (
+              <Card key={index} className={`relative ${pkg.popular ? 'ring-2 ring-purple-500 scale-105' : ''} hover-glow`}>
+                {pkg.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <Badge className="bg-purple-500 text-white px-4 py-1">
+                      <Star className="w-4 h-4 mr-1" />
+                      Most Popular
+                    </Badge>
+                  </div>
+                )}
+                
+                <CardHeader className="text-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <pkg.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <CardTitle className="text-2xl font-bold text-gray-900">{pkg.name}</CardTitle>
+                  <div className="mt-4">
+                    <span className="text-4xl font-bold text-gray-900">${pkg.price}</span>
+                    <span className="text-gray-600">/{pkg.period}</span>
+                  </div>
+                  <p className="text-gray-600 mt-2">{pkg.description}</p>
+                </CardHeader>
+                
+                <CardContent>
+                  <div className="space-y-3 mb-8">
+                    {pkg.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center">
+                        <Check className="w-5 h-5 text-green-500 mr-3" />
+                        <span className="text-gray-600">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <Button 
+                    className={`w-full ${pkg.popular 
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700' 
+                      : 'bg-gray-900 hover:bg-gray-800'
+                    } text-white`}
+                  >
+                    {pkg.cta}
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Web Development Pricing Section */}
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">Web Development Packages</h3>
             <p className="text-gray-600">Choose the perfect package for your project needs</p>
           </div>
 

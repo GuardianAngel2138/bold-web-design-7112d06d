@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import { ExternalLink, Github, Eye, Calendar, Users, Code } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import PortfolioCounters from './PortfolioCounters';
 
 const PortfolioSection = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -29,7 +29,7 @@ const PortfolioSection = () => {
       team: "5 developers",
       featured: true,
       liveUrl: "https://financeflow-demo.com",
-      githubUrl: "https://github.com/techcraft/financeflow"
+      githubUrl: "https://github.com/avensora/financeflow"
     },
     {
       id: 2,
@@ -43,7 +43,7 @@ const PortfolioSection = () => {
       team: "6 developers",
       featured: true,
       liveUrl: "https://shopsmart-demo.com",
-      githubUrl: "https://github.com/techcraft/shopsmart"
+      githubUrl: "https://github.com/avensora/shopsmart"
     },
     {
       id: 3,
@@ -57,7 +57,7 @@ const PortfolioSection = () => {
       team: "4 developers",
       featured: false,
       liveUrl: "https://healthtrack-app.com",
-      githubUrl: "https://github.com/techcraft/healthtrack"
+      githubUrl: "https://github.com/avensora/healthtrack"
     },
     {
       id: 4,
@@ -71,7 +71,7 @@ const PortfolioSection = () => {
       team: "3 developers",
       featured: false,
       liveUrl: "https://techcorp-demo.com",
-      githubUrl: "https://github.com/techcraft/techcorp"
+      githubUrl: "https://github.com/avensora/techcorp"
     },
     {
       id: 5,
@@ -85,7 +85,7 @@ const PortfolioSection = () => {
       team: "8 developers",
       featured: true,
       liveUrl: "https://edulearn-demo.com",
-      githubUrl: "https://github.com/techcraft/edulearn"
+      githubUrl: "https://github.com/avensora/edulearn"
     },
     {
       id: 6,
@@ -99,20 +99,13 @@ const PortfolioSection = () => {
       team: "5 developers",
       featured: false,
       liveUrl: "https://quickbite-app.com",
-      githubUrl: "https://github.com/techcraft/fooddelivery"
+      githubUrl: "https://github.com/avensora/fooddelivery"
     }
   ];
 
   const filteredProjects = activeFilter === 'all' 
     ? projects 
     : projects.filter(project => project.category === activeFilter);
-
-  const stats = [
-    { number: "500+", label: "Projects Completed" },
-    { number: "98%", label: "Client Satisfaction" },
-    { number: "150+", label: "Happy Clients" },
-    { number: "50+", label: "Awards Won" }
-  ];
 
   return (
     <section id="portfolio" className="py-20 bg-gray-50">
@@ -127,15 +120,8 @@ const PortfolioSection = () => {
           </p>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-          {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-4xl font-bold gradient-text mb-2">{stat.number}</div>
-              <div className="text-gray-600">{stat.label}</div>
-            </div>
-          ))}
-        </div>
+        {/* Stats with intersection observer */}
+        <PortfolioCounters />
 
         {/* Filter Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
