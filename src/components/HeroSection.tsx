@@ -122,7 +122,7 @@ const HeroSection = () => {
             data-aos="fade-up"
             data-aos-delay="300"
           >
-            <span className="text-shimmer">Avensora</span>{' '}
+            <span className="text-shimmer pulse-slow">Avensora</span>{' '}
             <span className="text-gray-900">Creates</span>{' '}
             <span className="text-shimmer">
               <span ref={typedTextRef}></span>
