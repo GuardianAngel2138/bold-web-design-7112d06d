@@ -123,7 +123,7 @@ const HeroSection = () => {
             data-aos-delay="300"
           >
             <span className="text-gray-900">We Create</span>{' '}
-            <span className="gradient-text">
+            <span className="text-shimmer">
               <span ref={typedTextRef}></span>
               <span className="animate-pulse">|</span>
             </span>
@@ -135,7 +135,7 @@ const HeroSection = () => {
             data-aos="fade-up"
             data-aos-delay="400"
           >
-            Transform your digital presence with cutting-edge web development, 
+            Transform your <span className="gradient-text">digital presence</span> with cutting-edge web development, 
             stunning design, and innovative solutions that drive results.
           </p>
 

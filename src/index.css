@@ -129,14 +129,14 @@ html {
   background-clip: text;
 }
 
-/* Reduced text animations - only essential ones */
+/* Reduced text animations - only essential ones with faster animation */
 .text-shimmer {
   background: linear-gradient(90deg, #667eea 25%, #764ba2 50%, #f093fb 75%, #667eea 100%);
   background-size: 400% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer 3s infinite linear;
+  animation: shimmer 1000ms infinite linear;
 }
 
 @keyframes shimmer {
@@ -146,6 +146,14 @@ html {
   100% {
     background-position: 400% 0;
   }
+}
+
+/* Text sparkle for key highlights */
+.text-sparkle {
+  background: linear-gradient(45deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Glassmorphism effect */

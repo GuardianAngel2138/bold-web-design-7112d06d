@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Users, Award, Target, Zap, Heart, Shield } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+
 const AboutSection = () => {
   const values = [{
     icon: Target,
@@ -19,6 +21,7 @@ const AboutSection = () => {
     title: "Quality Assured",
     description: "Rigorous testing and quality control ensure reliable, secure solutions."
   }];
+  
   const team = [{
     name: "Alex Johnson",
     role: "CEO & Lead Developer",
@@ -40,16 +43,17 @@ const AboutSection = () => {
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
     expertise: "Agile Methodology, Client Relations"
   }];
+  
   return <section id="about" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            <span className="text-shimmer">About</span> <span className="gradient-text">TechCraft Solutions</span>
+            <span className="gradient-text">About</span> <span className="text-gray-900">Avensora</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            We are a <span className="text-shimmer">passionate team</span> of developers, designers, and innovators dedicated to 
-            transforming ideas into <span className="gradient-text">powerful digital experiences</span> that drive business growth.
+            We are a passionate team of developers, designers, and innovators dedicated to 
+            transforming ideas into <span className="text-shimmer">Digital Experience</span> that drive business growth.
           </p>
         </div>
 
@@ -57,16 +61,16 @@ const AboutSection = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
           <div data-aos="fade-right" data-aos-delay="200">
             <h3 className="text-3xl font-bold text-gray-900 mb-6">
-              <span className="text-sparkle">Our Story</span>
+              Our <span className="gradient-text">Story</span>
             </h3>
             <p className="text-gray-600 mb-6 leading-relaxed">
-              Founded in 2019, <span className="gradient-text">TechCraft Solutions</span> emerged from a simple vision: to bridge the gap 
-              between <span className="text-shimmer">innovative technology</span> and real-world business needs. What started as a small 
+              Founded in 2019, <span className="text-gray-900">Avensora</span> emerged from a simple vision: to bridge the gap 
+              between innovative technology and real-world business needs. What started as a small 
               team of passionate developers has grown into a full-service digital agency.
             </p>
             <p className="text-gray-600 mb-6 leading-relaxed">
-              We've successfully delivered over <span className="text-sparkle">500 projects</span>, ranging from simple websites to 
-              complex enterprise applications. Our commitment to <span className="gradient-text">excellence and innovation</span> has 
+              We've successfully delivered over <span className="gradient-text">500 projects</span>, ranging from simple websites to 
+              complex enterprise applications. Our commitment to excellence and innovation has 
               earned us the trust of clients across various industries.
             </p>
             <div className="flex items-center space-x-6">
@@ -96,7 +100,7 @@ const AboutSection = () => {
                 <CardContent className="p-6">
                   <value.icon className="w-12 h-12 text-blue-600 mx-auto mb-4" />
                   <h4 className="text-xl font-semibold text-gray-900 mb-3">
-                    <span className="text-shimmer">{value.title}</span>
+                    <span className="text-gray-900">{value.title}</span>
                   </h4>
                   <p className="text-gray-600">{value.description}</p>
                 </CardContent>
@@ -117,7 +121,7 @@ const AboutSection = () => {
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
                   </div>
                   <h4 className="text-xl font-semibold text-gray-900 mb-1">
-                    <span className="text-sparkle">{member.name}</span>
+                    <span className="gradient-text">{member.name}</span>
                   </h4>
                   <p className="text-blue-600 font-medium mb-2">{member.role}</p>
                   <p className="text-sm text-gray-600">{member.expertise}</p>
@@ -128,4 +132,5 @@ const AboutSection = () => {
       </div>
     </section>;
 };
+
 export default AboutSection;
