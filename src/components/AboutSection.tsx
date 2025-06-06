@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { Users, Award, Target, Zap, Heart, Shield } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 const AboutSection = () => {
   const values = [{
