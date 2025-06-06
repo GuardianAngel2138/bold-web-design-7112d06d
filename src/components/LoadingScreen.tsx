@@ -8,7 +8,7 @@ const LoadingScreen = () => {
       <div className="text-center">
         <div className="flex items-center justify-center mb-8">
           <Code2 className="h-12 w-12 text-blue-600 animate-pulse" />
-          <span className="text-2xl font-bold gradient-text ml-3">TechCraft Solutions</span>
+          <span className="text-2xl font-bold gradient-text ml-3">Avensora</span>
         </div>
         
         <div className="flex items-center justify-center space-x-2 mb-4">
