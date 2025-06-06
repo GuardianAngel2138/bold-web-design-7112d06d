@@ -1,65 +1,51 @@
 import React from 'react';
 import { Users, Award, Target, Zap, Heart, Shield } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-
 const AboutSection = () => {
-  const values = [
-    {
-      icon: Target,
-      title: "Mission-Driven",
-      description: "We're committed to delivering exceptional digital solutions that exceed expectations."
-    },
-    {
-      icon: Zap,
-      title: "Innovation First",
-      description: "We leverage cutting-edge technologies to create future-ready applications."
-    },
-    {
-      icon: Heart,
-      title: "Client-Focused",
-      description: "Your success is our success. We build lasting partnerships with every client."
-    },
-    {
-      icon: Shield,
-      title: "Quality Assured",
-      description: "Rigorous testing and quality control ensure reliable, secure solutions."
-    }
-  ];
-
-  const team = [
-    {
-      name: "Alex Johnson",
-      role: "CEO & Lead Developer",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
-      expertise: "Full-Stack Development, System Architecture"
-    },
-    {
-      name: "Sarah Chen",
-      role: "Creative Director",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
-      expertise: "UI/UX Design, Brand Strategy"
-    },
-    {
-      name: "Michael Davis",
-      role: "Technical Lead",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-      expertise: "DevOps, Cloud Infrastructure"
-    },
-    {
-      name: "Emily Rodriguez",
-      role: "Project Manager",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
-      expertise: "Agile Methodology, Client Relations"
-    }
-  ];
-
-  return (
-    <section id="about" className="py-20 bg-gray-50">
+  const values = [{
+    icon: Target,
+    title: "Mission-Driven",
+    description: "We're committed to delivering exceptional digital solutions that exceed expectations."
+  }, {
+    icon: Zap,
+    title: "Innovation First",
+    description: "We leverage cutting-edge technologies to create future-ready applications."
+  }, {
+    icon: Heart,
+    title: "Client-Focused",
+    description: "Your success is our success. We build lasting partnerships with every client."
+  }, {
+    icon: Shield,
+    title: "Quality Assured",
+    description: "Rigorous testing and quality control ensure reliable, secure solutions."
+  }];
+  const team = [{
+    name: "Alex Johnson",
+    role: "CEO & Lead Developer",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+    expertise: "Full-Stack Development, System Architecture"
+  }, {
+    name: "Sarah Chen",
+    role: "Creative Director",
+    image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
+    expertise: "UI/UX Design, Brand Strategy"
+  }, {
+    name: "Michael Davis",
+    role: "Technical Lead",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
+    expertise: "DevOps, Cloud Infrastructure"
+  }, {
+    name: "Emily Rodriguez",
+    role: "Project Manager",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
+    expertise: "Agile Methodology, Client Relations"
+  }];
+  return <section id="about" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            <span className="text-sparkle">About</span> <span className="gradient-text">TechCraft Solutions</span>
+            <span className="text-shimmer">About</span> <span className="gradient-text">TechCraft Solutions</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             We are a <span className="text-shimmer">passionate team</span> of developers, designers, and innovators dedicated to 
@@ -96,11 +82,7 @@ const AboutSection = () => {
           </div>
           
           <div data-aos="fade-left" data-aos-delay="400">
-            <img 
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop" 
-              alt="Team collaboration" 
-              className="rounded-lg shadow-xl hover-glow"
-            />
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop" alt="Team collaboration" className="rounded-lg shadow-xl hover-glow" />
           </div>
         </div>
 
@@ -110,13 +92,7 @@ const AboutSection = () => {
             Our <span className="gradient-text">Core Values</span>
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <Card 
-                key={index} 
-                className="text-center hover-glow cursor-pointer"
-                data-aos="fade-up"
-                data-aos-delay={200 + index * 100}
-              >
+            {values.map((value, index) => <Card key={index} className="text-center hover-glow cursor-pointer" data-aos="fade-up" data-aos-delay={200 + index * 100}>
                 <CardContent className="p-6">
                   <value.icon className="w-12 h-12 text-blue-600 mx-auto mb-4" />
                   <h4 className="text-xl font-semibold text-gray-900 mb-3">
@@ -124,8 +100,7 @@ const AboutSection = () => {
                   </h4>
                   <p className="text-gray-600">{value.description}</p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
 
@@ -135,20 +110,10 @@ const AboutSection = () => {
             Meet Our <span className="gradient-text">Leadership Team</span>
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <Card 
-                key={index} 
-                className="text-center hover-glow cursor-pointer"
-                data-aos="zoom-in"
-                data-aos-delay={200 + index * 150}
-              >
+            {team.map((member, index) => <Card key={index} className="text-center hover-glow cursor-pointer" data-aos="zoom-in" data-aos-delay={200 + index * 150}>
                 <CardContent className="p-6">
                   <div className="relative mb-4">
-                    <img 
-                      src={member.image} 
-                      alt={member.name}
-                      className="w-24 h-24 rounded-full mx-auto object-cover"
-                    />
+                    <img src={member.image} alt={member.name} className="w-24 h-24 rounded-full mx-auto object-cover" />
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
                   </div>
                   <h4 className="text-xl font-semibold text-gray-900 mb-1">
@@ -157,13 +122,10 @@ const AboutSection = () => {
                   <p className="text-blue-600 font-medium mb-2">{member.role}</p>
                   <p className="text-sm text-gray-600">{member.expertise}</p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutSection;
