@@ -412,7 +412,7 @@ const ContactSection = () => {
                 <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900 flex items-center">
                   <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-blue-600 flex-shrink-0" />
                   <span>Send Us a Message</span>
-                  <Shield className="w-4 h-4 ml-2 text-green-600" title="Secure Form" />
+                  <Shield className="w-4 h-4 ml-2 text-green-600" />
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
