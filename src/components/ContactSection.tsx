@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Swal from 'sweetalert2';
+import emailjs from '@emailjs/browser';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -67,11 +68,29 @@ const ContactSection = () => {
 
     setIsSubmitting(true);
 
-    // Simulate form submission with more realistic timing
-    setTimeout(async () => {
+    try {
+      // EmailJS configuration
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        service: formData.service,
+        budget: formData.budget,
+        message: formData.message,
+        to_name: 'Avensora Team',
+      };
+
+      // Replace these with your actual EmailJS credentials
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        templateParams,
+        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+      );
+
       setIsSubmitting(false);
       
-      const result = await Swal.fire({
+      await Swal.fire({
         title: '🎉 Message Sent Successfully!',
         html: `
           <div class="text-left space-y-3">
@@ -99,26 +118,37 @@ const ContactSection = () => {
         }
       });
 
-      if (result.isConfirmed) {
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          service: '',
-          budget: '',
-          message: ''
-        });
-      }
-    }, 2000);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        service: '',
+        budget: '',
+        message: ''
+      });
+    } catch (error) {
+      setIsSubmitting(false);
+      console.error('EmailJS Error:', error);
+      
+      Swal.fire({
+        title: 'Error Sending Message',
+        text: 'There was an issue sending your message. Please try again or contact us directly.',
+        icon: 'error',
+        confirmButtonColor: '#EF4444',
+        customClass: {
+          popup: 'rounded-xl shadow-2xl'
+        }
+      });
+    }
   };
 
   const contactInfo = [
     {
       icon: Mail,
       title: "Email Us",
-      details: "hello@techcraft.dev",
+      details: "hello@avensora.com",
       description: "Send us an email anytime!",
-      action: () => window.open('mailto:hello@techcraft.dev', '_blank')
+      action: () => window.open('mailto:hello@avensora.com', '_blank')
     },
     {
       icon: Phone,
@@ -156,43 +186,43 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16" data-aos="fade-up">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
             Get In <span className="gradient-text">Touch</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
             Ready to start your next project? Let's discuss how we can help you achieve your goals.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
+        <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
           {/* Contact Information */}
-          <div className="lg:col-span-1" data-aos="fade-right">
-            <div className="space-y-8">
+          <div className="lg:col-span-1 order-2 lg:order-1" data-aos="fade-right">
+            <div className="space-y-6 lg:space-y-8">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Let's Talk</h3>
-                <p className="text-gray-600 mb-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Let's Talk</h3>
+                <p className="text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base">
                   We're here to help bring your ideas to life. Whether you need a simple website 
                   or a complex web application, our team is ready to deliver exceptional results.
                 </p>
               </div>
 
               {/* Contact Cards */}
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {contactInfo.map((info, index) => (
                   <Card key={index} className="hover-glow cursor-pointer transition-all duration-300 hover:scale-105" onClick={info.action}>
-                    <CardContent className="p-6">
-                      <div className="flex items-start space-x-4">
-                        <div className="bg-blue-100 p-3 rounded-lg group-hover:bg-blue-200 transition-colors duration-200">
-                          <info.icon className="w-6 h-6 text-blue-600" />
+                    <CardContent className="p-4 sm:p-6">
+                      <div className="flex items-start space-x-3 sm:space-x-4">
+                        <div className="bg-blue-100 p-2 sm:p-3 rounded-lg group-hover:bg-blue-200 transition-colors duration-200 flex-shrink-0">
+                          <info.icon className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                         </div>
-                        <div>
-                          <h4 className="font-semibold text-gray-900 mb-1">{info.title}</h4>
-                          <p className="text-blue-600 font-medium mb-1">{info.details}</p>
-                          <p className="text-sm text-gray-600">{info.description}</p>
+                        <div className="min-w-0">
+                          <h4 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{info.title}</h4>
+                          <p className="text-blue-600 font-medium mb-1 text-sm sm:text-base break-all">{info.details}</p>
+                          <p className="text-xs sm:text-sm text-gray-600">{info.description}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -202,12 +232,12 @@ const ContactSection = () => {
 
               {/* Business Hours */}
               <Card className="bg-gradient-to-br from-blue-50 to-purple-50">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center space-x-3 mb-4">
-                    <Clock className="w-6 h-6 text-blue-600" />
-                    <h4 className="font-semibold text-gray-900">Business Hours</h4>
+                    <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 flex-shrink-0" />
+                    <h4 className="font-semibold text-gray-900 text-sm sm:text-base">Business Hours</h4>
                   </div>
-                  <div className="space-y-2 text-sm">
+                  <div className="space-y-2 text-xs sm:text-sm">
                     <div className="flex justify-between">
                       <span className="text-gray-600">Monday - Friday</span>
                       <span className="font-medium">8:00 AM - 6:00 PM</span>
@@ -227,17 +257,17 @@ const ContactSection = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="lg:col-span-2" data-aos="fade-left">
+          <div className="lg:col-span-2 order-1 lg:order-2" data-aos="fade-left">
             <Card className="hover-glow">
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold text-gray-900 flex items-center">
-                  <MessageCircle className="w-6 h-6 mr-3 text-blue-600" />
-                  Send Us a Message
+              <CardHeader className="pb-4 sm:pb-6">
+                <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900 flex items-center">
+                  <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-blue-600 flex-shrink-0" />
+                  <span>Send Us a Message</span>
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+              <CardContent className="pt-0">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                         Full Name *
@@ -249,9 +279,9 @@ const ContactSection = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="Your full name"
-                        className={`w-full ${formErrors.name ? 'border-red-500' : ''}`}
+                        className={`w-full text-sm sm:text-base ${formErrors.name ? 'border-red-500' : ''}`}
                       />
-                      {formErrors.name && <p className="text-red-500 text-sm mt-1">{formErrors.name}</p>}
+                      {formErrors.name && <p className="text-red-500 text-xs sm:text-sm mt-1">{formErrors.name}</p>}
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -264,13 +294,13 @@ const ContactSection = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="your.email@example.com"
-                        className={`w-full ${formErrors.email ? 'border-red-500' : ''}`}
+                        className={`w-full text-sm sm:text-base ${formErrors.email ? 'border-red-500' : ''}`}
                       />
-                      {formErrors.email && <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>}
+                      {formErrors.email && <p className="text-red-500 text-xs sm:text-sm mt-1">{formErrors.email}</p>}
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
                       <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                         Phone Number
@@ -282,7 +312,7 @@ const ContactSection = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         placeholder="+1 (555) 123-4567"
-                        className="w-full"
+                        className="w-full text-sm sm:text-base"
                       />
                     </div>
                     <div>
@@ -294,14 +324,14 @@ const ContactSection = () => {
                         name="service"
                         value={formData.service}
                         onChange={handleInputChange}
-                        className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${formErrors.service ? 'border-red-500' : ''}`}
+                        className={`w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${formErrors.service ? 'border-red-500' : ''}`}
                       >
                         <option value="">Select a service</option>
                         {services.map((service) => (
                           <option key={service} value={service}>{service}</option>
                         ))}
                       </select>
-                      {formErrors.service && <p className="text-red-500 text-sm mt-1">{formErrors.service}</p>}
+                      {formErrors.service && <p className="text-red-500 text-xs sm:text-sm mt-1">{formErrors.service}</p>}
                     </div>
                   </div>
 
@@ -314,7 +344,7 @@ const ContactSection = () => {
                       name="budget"
                       value={formData.budget}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                       <option value="">Select budget range</option>
                       {budgetRanges.map((range) => (
@@ -330,32 +360,39 @@ const ContactSection = () => {
                     <Textarea
                       id="message"
                       name="message"
-                      rows={6}
+                      rows={5}
                       value={formData.message}
                       onChange={handleInputChange}
                       placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
-                      className={`w-full ${formErrors.message ? 'border-red-500' : ''}`}
+                      className={`w-full text-sm sm:text-base ${formErrors.message ? 'border-red-500' : ''}`}
                     />
-                    {formErrors.message && <p className="text-red-500 text-sm mt-1">{formErrors.message}</p>}
+                    {formErrors.message && <p className="text-red-500 text-xs sm:text-sm mt-1">{formErrors.message}</p>}
                   </div>
 
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 relative overflow-hidden group"
+                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-2 sm:py-3 text-sm sm:text-base relative overflow-hidden group button-shimmer"
                   >
                     {isSubmitting ? (
                       <div className="flex items-center justify-center">
-                        <Loader2 className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2" />
+                        <Loader2 className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-b-2 border-white mr-2" />
                         Sending Message...
                       </div>
                     ) : (
                       <div className="flex items-center justify-center">
-                        <Send className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform duration-200" />
+                        <Send className="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:translate-x-1 transition-transform duration-200" />
                         Send Message
                       </div>
                     )}
                   </Button>
+
+                  <div className="mt-4 p-3 sm:p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                    <p className="text-xs sm:text-sm text-amber-800">
+                      <strong>Setup Required:</strong> To enable email functionality, please configure your EmailJS credentials in the ContactSection component. 
+                      Replace YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, and YOUR_PUBLIC_KEY with your actual EmailJS values.
+                    </p>
+                  </div>
                 </form>
               </CardContent>
             </Card>

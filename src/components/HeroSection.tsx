@@ -58,7 +58,7 @@ const HeroSection = () => {
         `,
         showConfirmButton: false,
         showCloseButton: true,
-        width: '500px',
+        width: window.innerWidth < 640 ? '90%' : '500px',
         customClass: {
           popup: 'rounded-xl shadow-2xl',
           closeButton: 'text-gray-400 hover:text-gray-600'
@@ -80,6 +80,7 @@ const HeroSection = () => {
         confirmButtonText: 'Schedule Live Demo',
         cancelButtonText: 'Maybe Later',
         confirmButtonColor: '#3B82F6',
+        width: window.innerWidth < 640 ? '90%' : '500px',
         customClass: {
           popup: 'rounded-xl shadow-2xl'
         }
@@ -98,41 +99,42 @@ const HeroSection = () => {
       
       {/* Animated background elements */}
       <div className="absolute inset-0 z-2">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
-        <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{ animationDelay: '3s' }}></div>
-        <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-cyan-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{ animationDelay: '6s' }}></div>
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
+        <div className="absolute top-1/3 right-1/4 w-36 h-36 sm:w-56 sm:h-56 lg:w-72 lg:h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute bottom-1/4 left-1/3 w-40 h-40 sm:w-64 sm:h-64 lg:w-80 lg:h-80 bg-cyan-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{ animationDelay: '6s' }}></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div>
           {/* Badge */}
           <div 
-            className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8 hover:bg-blue-200 transition-colors duration-200"
+            className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-blue-100 text-blue-800 text-xs sm:text-sm font-medium mb-6 sm:mb-8 hover:bg-blue-200 transition-colors duration-200"
             data-aos="fade-down"
             data-aos-delay="200"
           >
-            <Star className="w-4 h-4 mr-2" />
-            <span>Trusted by 500+ Clients Worldwide</span>
-            <Sparkles className="w-4 h-4 ml-2 text-yellow-500" />
+            <Star className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+            <span className="hidden sm:inline">Trusted by 500+ Clients Worldwide</span>
+            <span className="sm:hidden">500+ Happy Clients</span>
+            <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 ml-1.5 sm:ml-2 text-yellow-500" />
           </div>
 
           {/* Main heading */}
           <h1 
-            className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight"
             data-aos="fade-up"
             data-aos-delay="300"
           >
             <span className="text-shimmer pulse-slow">Avensora</span>{' '}
             <span className="text-gray-900">Creates</span>{' '}
-            <span className="text-shimmer">
+            <div className="text-shimmer mt-2 sm:mt-0 sm:inline">
               <span ref={typedTextRef}></span>
               <span className="animate-pulse">|</span>
-            </span>
+            </div>
           </h1>
 
           {/* Subtitle */}
           <p 
-            className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-2"
             data-aos="fade-up"
             data-aos-delay="400"
           >
@@ -142,7 +144,7 @@ const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div 
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12 px-4"
             data-aos="fade-up"
             data-aos-delay="500"
           >
@@ -150,17 +152,17 @@ const HeroSection = () => {
               size="lg" 
               onClick={handleStartProject}
               disabled={isLoading}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg hover-glow relative overflow-hidden group button-shimmer"
+              className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg hover-glow relative overflow-hidden group button-shimmer"
             >
               {isLoading ? (
                 <>
-                  <Loader2 className="mr-2 w-5 h-5 animate-spin" />
+                  <Loader2 className="mr-2 w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
                   Loading...
                 </>
               ) : (
                 <>
                   <span>Start Your Project</span>
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                  <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200" />
                 </>
               )}
             </Button>
@@ -170,16 +172,16 @@ const HeroSection = () => {
               size="lg" 
               onClick={handleWatchDemo}
               disabled={playLoading}
-              className="border-2 border-gray-300 hover:border-blue-500 px-8 py-3 text-lg group relative button-shimmer"
+              className="w-full sm:w-auto border-2 border-gray-300 hover:border-blue-500 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg group relative button-shimmer"
             >
               {playLoading ? (
                 <>
-                  <Loader2 className="mr-2 w-5 h-5 animate-spin" />
+                  <Loader2 className="mr-2 w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
                   Loading...
                 </>
               ) : (
                 <>
-                  <Play className="mr-2 w-5 h-5 group-hover:text-blue-600 transition-colors duration-200" />
+                  <Play className="mr-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:text-blue-600 transition-colors duration-200" />
                   <span className="gradient-text">Watch Demo</span>
                 </>
               )}
@@ -187,7 +189,7 @@ const HeroSection = () => {
           </div>
 
           {/* Global Counters */}
-          <div data-aos="fade-up" data-aos-delay="600">
+          <div data-aos="fade-up" data-aos-delay="600" className="px-4">
             <GlobalCounters className="max-w-4xl mx-auto" />
           </div>
         </div>

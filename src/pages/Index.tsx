@@ -15,13 +15,15 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Initialize AOS with faster settings
+    // Initialize AOS with mobile-friendly settings
     AOS.init({
       duration: 600,
       easing: 'ease-in-out',
       once: false,
-      offset: 80,
+      offset: 50,
       delay: 50,
+      // Disable animations on mobile for better performance
+      disable: window.innerWidth < 768 ? 'mobile' : false,
     });
 
     // Simulate loading time
@@ -37,7 +39,7 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       <Navigation />
       <div data-aos="fade-up" data-aos-duration="800">
         <HeroSection />
