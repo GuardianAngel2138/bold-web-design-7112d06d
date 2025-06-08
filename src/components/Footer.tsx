@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Code2, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, Github, ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -34,17 +35,17 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-secondary text-secondary-foreground dark:bg-gray-900 dark:text-white">
       {/* Main footer content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <Code2 className="h-8 w-8 text-blue-400" />
+              <Code2 className="h-8 w-8 text-primary" />
               <span className="text-xl font-bold text-shimmer">Avensora</span>
             </div>
-            <p className="text-gray-400 mb-6 leading-relaxed">
+            <p className="text-muted-foreground mb-6 leading-relaxed">
               We're a passionate team of developers and designers creating innovative 
               digital solutions that drive business growth and user engagement.
             </p>
@@ -52,29 +53,29 @@ const Footer = () => {
             {/* Contact Info */}
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-blue-400" />
-                <span className="text-gray-400">hello@avensora.com</span>
+                <Mail className="w-5 h-5 text-primary" />
+                <span className="text-muted-foreground">hello@avensora.com</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-blue-400" />
-                <span className="text-gray-400">+1 (555) 123-4567</span>
+                <Phone className="w-5 h-5 text-primary" />
+                <span className="text-muted-foreground">+1 (555) 123-4567</span>
               </div>
               <div className="flex items-center space-x-3">
-                <MapPin className="w-5 h-5 text-blue-400" />
-                <span className="text-gray-400">San Francisco, CA</span>
+                <MapPin className="w-5 h-5 text-primary" />
+                <span className="text-muted-foreground">San Francisco, CA</span>
               </div>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4 text-foreground">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <a 
                     href={link.href}
-                    className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200"
                   >
                     {link.name}
                   </a>
@@ -85,13 +86,13 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Our Services</h3>
+            <h3 className="text-lg font-semibold mb-4 text-foreground">Our Services</h3>
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.name}>
                   <a 
                     href={service.href}
-                    className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200"
                   >
                     {service.name}
                   </a>
@@ -102,8 +103,8 @@ const Footer = () => {
 
           {/* Newsletter & Social */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Stay Connected</h3>
-            <p className="text-gray-400 mb-4">
+            <h3 className="text-lg font-semibold mb-4 text-foreground">Stay Connected</h3>
+            <p className="text-muted-foreground mb-4">
               Subscribe to our newsletter for the latest updates and tech insights.
             </p>
             
@@ -112,16 +113,16 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-blue-500 text-white min-w-0"
+                className="flex-1 px-3 py-2 bg-background border border-border rounded-md focus:outline-none focus:border-primary text-foreground min-w-0"
               />
-              <Button className="bg-blue-600 hover:bg-blue-700 whitespace-nowrap button-shimmer">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground whitespace-nowrap button-shimmer">
                 Subscribe
               </Button>
             </div>
 
             {/* Social Links */}
             <div>
-              <h4 className="text-sm font-semibold mb-3">Follow Us</h4>
+              <h4 className="text-sm font-semibold mb-3 text-foreground">Follow Us</h4>
               <div className="flex space-x-3">
                 {socialLinks.map((social) => (
                   <a
@@ -129,10 +130,10 @@ const Footer = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors duration-200"
+                    className="w-10 h-10 bg-accent rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-200"
                     aria-label={social.label}
                   >
-                    <social.icon className="w-5 h-5" />
+                    <social.icon className="w-5 h-5 text-accent-foreground hover:text-primary-foreground" />
                   </a>
                 ))}
               </div>
@@ -142,21 +143,21 @@ const Footer = () => {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-400 text-sm mb-4 md:mb-0">
+            <div className="text-muted-foreground text-sm mb-4 md:mb-0">
               © 2024 <span className="text-shimmer">Avensora</span>. All rights reserved.
             </div>
             
             <div className="flex items-center space-x-6">
-              <a href="#privacy" className="text-gray-400 hover:text-blue-400 text-sm">
+              <a href="#privacy" className="text-muted-foreground hover:text-primary text-sm transition-colors">
                 Privacy Policy
               </a>
-              <a href="#terms" className="text-gray-400 hover:text-blue-400 text-sm">
+              <a href="#terms" className="text-muted-foreground hover:text-primary text-sm transition-colors">
                 Terms of Service
               </a>
-              <a href="#cookies" className="text-gray-400 hover:text-blue-400 text-sm">
+              <a href="#cookies" className="text-muted-foreground hover:text-primary text-sm transition-colors">
                 Cookie Policy
               </a>
               
@@ -165,7 +166,7 @@ const Footer = () => {
                 onClick={scrollToTop}
                 variant="outline"
                 size="sm"
-                className="border-gray-700 text-gray-400 hover:text-white hover:border-blue-500 button-shimmer"
+                className="border-border text-muted-foreground hover:text-foreground hover:border-primary button-shimmer"
               >
                 <ArrowUp className="w-4 h-4" />
               </Button>

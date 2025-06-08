@@ -55,7 +55,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -86,11 +86,11 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border transition-colors duration-300;
   }
 
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground font-inter transition-colors duration-300;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -98,22 +98,21 @@
   }
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar with theme support */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  @apply bg-secondary;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 10px;
+  @apply bg-muted-foreground rounded-lg;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+  @apply bg-foreground/70;
 }
 
 /* Smooth scroll behavior */
@@ -121,17 +120,22 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Simple gradient text - reduced animations */
+/* Enhanced gradient text with theme support */
 .gradient-text {
-  background: linear-gradient(45deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background: linear-gradient(45deg, hsl(var(--primary)) 0%, #764ba2 50%, #f093fb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Reduced text animations - only essential ones with faster animation */
+/* Enhanced shimmer effect with theme support */
 .text-shimmer {
-  background: linear-gradient(90deg, #667eea 25%, #764ba2 50%, #f093fb 75%, #667eea 100%);
+  background: linear-gradient(90deg, 
+    hsl(var(--primary)) 25%, 
+    #764ba2 50%, 
+    #f093fb 75%, 
+    hsl(var(--primary)) 100%
+  );
   background-size: 400% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -148,32 +152,34 @@ html {
   }
 }
 
-/* Text sparkle for key highlights */
+/* Dark theme aware sparkle effect */
 .text-sparkle {
-  background: linear-gradient(45deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+  background: linear-gradient(45deg, 
+    hsl(var(--primary)) 0%, 
+    hsl(var(--secondary)) 50%, 
+    hsl(var(--accent)) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Glassmorphism effect */
+/* Enhanced glassmorphism with theme support */
 .glass-effect {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  @apply bg-background/25 backdrop-blur-lg border border-border/50;
 }
 
-/* Enhanced hover glow effect */
+/* Enhanced hover glow with theme awareness */
 .hover-glow {
   transition: all 0.3s ease;
 }
 
 .hover-glow:hover {
-  box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 0 20px hsl(var(--primary) / 0.4);
   transform: translateY(-2px);
 }
 
-/* Button shimmer effect on hover */
+/* Dark theme aware button shimmer */
 .button-shimmer {
   position: relative;
   overflow: hidden;
@@ -186,7 +192,7 @@ html {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, hsl(var(--primary-foreground) / 0.4), transparent);
   transition: left 1000ms ease;
 }
 
@@ -203,11 +209,11 @@ html {
   }
 }
 
-/* Enhanced mobile touch animations */
+/* Enhanced mobile touch animations with theme support */
 @media (max-width: 768px) {
   .hover-glow:active {
     transform: scale(0.98);
-    box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.3);
   }
   
   button:active {
@@ -215,7 +221,7 @@ html {
   }
 }
 
-/* Float animation for backgroun elements */
+/* Float animation for background elements */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -229,7 +235,7 @@ html {
   animation: float 6s ease-in-out infinite;
 }
 
-/* Enhanced button animations */
+/* Enhanced button animations with theme support */
 button {
   transition: all 0.2s ease;
 }
@@ -242,23 +248,24 @@ button:active:not(:disabled) {
   transform: translateY(0);
 }
 
-/* Form focus animations */
+/* Form focus animations with theme support */
 input:focus, textarea:focus, select:focus {
   transform: scale(1.02);
   transition: all 0.2s ease;
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
 }
 
-/* Card hover animations */
+/* Card hover animations with theme support */
 .card-hover {
   transition: all 0.3s ease;
 }
 
 .card-hover:hover {
   transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px hsl(var(--foreground) / 0.1);
 }
 
-/* CTA button enhanced animations */
+/* Enhanced CTA button animations */
 .cta-button {
   position: relative;
   overflow: hidden;
@@ -271,7 +278,7 @@ input:focus, textarea:focus, select:focus {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, hsl(var(--primary-foreground) / 0.2), transparent);
   transition: left 0.5s;
 }
 
@@ -279,7 +286,7 @@ input:focus, textarea:focus, select:focus {
   left: 100%;
 }
 
-/* Card flex layout for button alignment */
+/* Card layout utilities */
 .card-content-wrapper {
   display: flex;
   flex-direction: column;
@@ -293,4 +300,3 @@ input:focus, textarea:focus, select:focus {
 .card-content-footer {
   margin-top: auto;
 }
-
