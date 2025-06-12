@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Code, Palette, Smartphone, Cloud, Search, ShoppingCart, Check, Star, Zap, Camera, Megaphone, TrendingUp } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -5,48 +6,75 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 const ServicesSection = () => {
+  // Security: Input sanitization function
+  const sanitizeRedirect = (targetId: string): void => {
+    const allowedTargets = ['contact', 'portfolio', 'home'];
+    if (allowedTargets.includes(targetId)) {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  // Security: Rate limiting for button clicks
+  const handleSecureButtonClick = (action: string, targetId?: string) => {
+    const lastClick = localStorage.getItem(`lastClick_${action}`);
+    const now = Date.now();
+    
+    if (lastClick && now - parseInt(lastClick) < 1000) {
+      return; // Prevent spam clicking
+    }
+    
+    localStorage.setItem(`lastClick_${action}`, now.toString());
+    
+    if (targetId) {
+      sanitizeRedirect(targetId);
+    }
+  };
+
   const services = [
     {
       icon: Code,
       title: "Web Development",
       description: "Custom websites and web applications built with modern technologies",
       features: ["React/Vue.js", "Node.js/Python", "Database Design", "API Integration"],
-      color: "bg-blue-500"
+      color: "bg-blue-500 dark:bg-blue-600"
     },
     {
       icon: Palette,
       title: "UI/UX Design",
       description: "Beautiful, user-centered designs that convert visitors into customers",
       features: ["Wireframing", "Prototyping", "User Research", "Brand Identity"],
-      color: "bg-purple-500"
+      color: "bg-purple-500 dark:bg-purple-600"
     },
     {
       icon: Smartphone,
       title: "Mobile Apps",
       description: "Native and cross-platform mobile applications for iOS and Android",
       features: ["React Native", "Flutter", "iOS/Android", "App Store Optimization"],
-      color: "bg-green-500"
+      color: "bg-green-500 dark:bg-green-600"
     },
     {
       icon: Cloud,
       title: "Cloud Solutions",
       description: "Scalable cloud infrastructure and deployment solutions",
       features: ["AWS/Azure", "DevOps", "Auto-scaling", "Security"],
-      color: "bg-cyan-500"
+      color: "bg-cyan-500 dark:bg-cyan-600"
     },
     {
       icon: Search,
       title: "SEO Optimization",
       description: "Improve your search rankings and drive organic traffic",
       features: ["Technical SEO", "Content Strategy", "Analytics", "Local SEO"],
-      color: "bg-orange-500"
+      color: "bg-orange-500 dark:bg-orange-600"
     },
     {
       icon: ShoppingCart,
       title: "E-commerce",
       description: "Complete online stores with payment processing and inventory management",
       features: ["Shopify/WooCommerce", "Payment Gateway", "Inventory System", "Analytics"],
-      color: "bg-red-500"
+      color: "bg-red-500 dark:bg-red-600"
     }
   ];
 
@@ -171,56 +199,66 @@ const ServicesSection = () => {
       discount: "25% OFF",
       description: "All new projects started this month",
       badge: "Limited Time",
-      color: "bg-gradient-to-r from-red-500 to-pink-500"
+      color: "bg-gradient-to-r from-red-500 to-pink-500 dark:from-red-600 dark:to-pink-600"
     },
     {
       title: "Bundle Package",
       discount: "Save $500",
       description: "Website + Mobile App combo",
       badge: "Best Value",
-      color: "bg-gradient-to-r from-green-500 to-teal-500"
+      color: "bg-gradient-to-r from-green-500 to-teal-500 dark:from-green-600 dark:to-teal-600"
     },
     {
       title: "Referral Bonus",
       discount: "$300 Credit",
       description: "For each successful referral",
       badge: "Ongoing",
-      color: "bg-gradient-to-r from-blue-500 to-purple-500"
+      color: "bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-600 dark:to-purple-600"
     }
   ];
 
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-12 sm:py-16 lg:py-20 bg-background transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <div className="text-center mb-12 lg:mb-16" data-aos="fade-up">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 lg:mb-6">
             Our <span className="gradient-text">Services</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-2">
             We offer comprehensive digital solutions to help your business thrive in the digital age
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16 lg:mb-20" data-aos="fade-up" data-aos-delay="200">
           {services.map((service, index) => (
-            <Card key={index} className="hover-glow cursor-pointer group">
-              <CardHeader>
-                <div className={`w-12 h-12 rounded-lg ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <service.icon className="w-6 h-6 text-white" />
+            <Card key={index} className="hover-glow cursor-pointer group card-hover bg-card border-border">
+              <CardHeader className="pb-4">
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <service.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <CardTitle className="text-xl font-semibold text-gray-900">{service.title}</CardTitle>
+                <CardTitle className="text-lg sm:text-xl font-semibold text-foreground">{service.title}</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">{service.description}</p>
-                <div className="space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-sm text-gray-600">
-                      <Check className="w-4 h-4 text-green-500 mr-2" />
-                      {feature}
-                    </div>
-                  ))}
+              <CardContent className="card-content-wrapper">
+                <div className="card-content-body">
+                  <p className="text-muted-foreground mb-4 text-sm sm:text-base">{service.description}</p>
+                  <div className="space-y-2">
+                    {service.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center text-xs sm:text-sm text-muted-foreground">
+                        <Check className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="card-content-footer mt-6">
+                  <Button 
+                    onClick={() => handleSecureButtonClick('service_inquiry', 'contact')}
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground button-shimmer"
+                  >
+                    Get Quote
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -228,54 +266,59 @@ const ServicesSection = () => {
         </div>
 
         {/* Digital Media Management Section */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Digital Media Management</h3>
-            <p className="text-gray-600">Comprehensive social media and digital marketing solutions</p>
+        <div className="mb-16 lg:mb-20" data-aos="fade-up" data-aos-delay="300">
+          <div className="text-center mb-8 lg:mb-12">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">Digital Media Management</h3>
+            <p className="text-muted-foreground">Comprehensive social media and digital marketing solutions</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {mediaPackages.map((pkg, index) => (
-              <Card key={index} className={`relative ${pkg.popular ? 'ring-2 ring-purple-500 scale-105' : ''} hover-glow`}>
+              <Card key={index} className={`relative ${pkg.popular ? 'ring-2 ring-primary scale-105' : ''} hover-glow bg-card border-border`}>
                 {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-purple-500 text-white px-4 py-1">
-                      <Star className="w-4 h-4 mr-1" />
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                    <Badge className="bg-primary text-primary-foreground px-3 py-1 shadow-lg">
+                      <Star className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                       Most Popular
                     </Badge>
                   </div>
                 )}
                 
-                <CardHeader className="text-center">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <pkg.icon className="w-6 h-6 text-white" />
+                <CardHeader className="text-center pb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-purple-500 to-pink-500 dark:from-purple-600 dark:to-pink-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <pkg.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   </div>
-                  <CardTitle className="text-2xl font-bold text-gray-900">{pkg.name}</CardTitle>
+                  <CardTitle className="text-xl sm:text-2xl font-bold text-foreground">{pkg.name}</CardTitle>
                   <div className="mt-4">
-                    <span className="text-4xl font-bold text-gray-900">${pkg.price}</span>
-                    <span className="text-gray-600">/{pkg.period}</span>
+                    <span className="text-3xl sm:text-4xl font-bold text-foreground">${pkg.price}</span>
+                    <span className="text-muted-foreground">/{pkg.period}</span>
                   </div>
-                  <p className="text-gray-600 mt-2">{pkg.description}</p>
+                  <p className="text-muted-foreground mt-2 text-sm sm:text-base px-2">{pkg.description}</p>
                 </CardHeader>
                 
-                <CardContent>
-                  <div className="space-y-3 mb-8">
-                    {pkg.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center">
-                        <Check className="w-5 h-5 text-green-500 mr-3" />
-                        <span className="text-gray-600">{feature}</span>
-                      </div>
-                    ))}
+                <CardContent className="card-content-wrapper">
+                  <div className="card-content-body">
+                    <div className="space-y-3 mb-6 lg:mb-8">
+                      {pkg.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-start">
+                          <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                          <span className="text-muted-foreground text-sm sm:text-base">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                   
-                  <Button 
-                    className={`w-full ${pkg.popular 
-                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700' 
-                      : 'bg-gray-900 hover:bg-gray-800'
-                    } text-white`}
-                  >
-                    {pkg.cta}
-                  </Button>
+                  <div className="card-content-footer">
+                    <Button 
+                      onClick={() => handleSecureButtonClick('media_package', 'contact')}
+                      className={`w-full ${pkg.popular 
+                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 dark:from-purple-700 dark:to-pink-700 dark:hover:from-purple-800 dark:hover:to-pink-800' 
+                        : 'bg-primary hover:bg-primary/90'
+                      } text-primary-foreground button-shimmer`}
+                    >
+                      {pkg.cta}
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -283,51 +326,56 @@ const ServicesSection = () => {
         </div>
 
         {/* Web Development Pricing Section */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Web Development Packages</h3>
-            <p className="text-gray-600">Choose the perfect package for your project needs</p>
+        <div className="mb-16 lg:mb-20" data-aos="fade-up" data-aos-delay="400">
+          <div className="text-center mb-8 lg:mb-12">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">Web Development Packages</h3>
+            <p className="text-muted-foreground">Choose the perfect package for your project needs</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {packages.map((pkg, index) => (
-              <Card key={index} className={`relative ${pkg.popular ? 'ring-2 ring-blue-500 scale-105' : ''} hover-glow`}>
+              <Card key={index} className={`relative ${pkg.popular ? 'ring-2 ring-primary scale-105' : ''} hover-glow bg-card border-border`}>
                 {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-blue-500 text-white px-4 py-1">
-                      <Star className="w-4 h-4 mr-1" />
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                    <Badge className="bg-primary text-primary-foreground px-3 py-1 shadow-lg">
+                      <Star className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                       Most Popular
                     </Badge>
                   </div>
                 )}
                 
-                <CardHeader className="text-center">
-                  <CardTitle className="text-2xl font-bold text-gray-900">{pkg.name}</CardTitle>
+                <CardHeader className="text-center pb-4">
+                  <CardTitle className="text-xl sm:text-2xl font-bold text-foreground">{pkg.name}</CardTitle>
                   <div className="mt-4">
-                    <span className="text-4xl font-bold text-gray-900">${pkg.price}</span>
-                    <span className="text-gray-600">/{pkg.period}</span>
+                    <span className="text-3xl sm:text-4xl font-bold text-foreground">${pkg.price}</span>
+                    <span className="text-muted-foreground">/{pkg.period}</span>
                   </div>
-                  <p className="text-gray-600 mt-2">{pkg.description}</p>
+                  <p className="text-muted-foreground mt-2 text-sm sm:text-base px-2">{pkg.description}</p>
                 </CardHeader>
                 
-                <CardContent>
-                  <div className="space-y-3 mb-8">
-                    {pkg.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center">
-                        <Check className="w-5 h-5 text-green-500 mr-3" />
-                        <span className="text-gray-600">{feature}</span>
-                      </div>
-                    ))}
+                <CardContent className="card-content-wrapper">
+                  <div className="card-content-body">
+                    <div className="space-y-3 mb-6 lg:mb-8">
+                      {pkg.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-start">
+                          <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                          <span className="text-muted-foreground text-sm sm:text-base">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                   
-                  <Button 
-                    className={`w-full ${pkg.popular 
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700' 
-                      : 'bg-gray-900 hover:bg-gray-800'
-                    } text-white`}
-                  >
-                    {pkg.cta}
-                  </Button>
+                  <div className="card-content-footer">
+                    <Button 
+                      onClick={() => handleSecureButtonClick('web_package', 'contact')}
+                      className={`w-full ${pkg.popular 
+                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 dark:from-blue-700 dark:to-purple-700 dark:hover:from-blue-800 dark:hover:to-purple-800' 
+                        : 'bg-primary hover:bg-primary/90'
+                      } text-primary-foreground button-shimmer`}
+                    >
+                      {pkg.cta}
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -335,28 +383,32 @@ const ServicesSection = () => {
         </div>
 
         {/* Special Offers */}
-        <div>
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Special Offers</h3>
-            <p className="text-gray-600">Limited-time deals and ongoing promotions</p>
+        <div data-aos="fade-up" data-aos-delay="500">
+          <div className="text-center mb-8 lg:mb-12">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">Special Offers</h3>
+            <p className="text-muted-foreground">Limited-time deals and ongoing promotions</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {offers.map((offer, index) => (
-              <Card key={index} className="relative overflow-hidden hover-glow">
+              <Card key={index} className="relative overflow-hidden hover-glow bg-card border-border">
                 <div className={`absolute top-0 right-0 ${offer.color} text-white px-3 py-1 rounded-bl-lg`}>
-                  <Badge variant="secondary" className="bg-white/20 text-white border-0">
+                  <Badge variant="secondary" className="bg-white/20 text-white border-0 text-xs">
                     {offer.badge}
                   </Badge>
                 </div>
                 
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="text-center">
-                    <Zap className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
-                    <h4 className="text-xl font-semibold text-gray-900 mb-2">{offer.title}</h4>
-                    <div className="text-3xl font-bold text-blue-600 mb-2">{offer.discount}</div>
-                    <p className="text-gray-600 mb-4">{offer.description}</p>
-                    <Button variant="outline" className="border-blue-500 text-blue-600 hover:bg-blue-50">
+                    <Zap className="w-10 h-10 sm:w-12 sm:h-12 text-yellow-500 mx-auto mb-4" />
+                    <h4 className="text-lg sm:text-xl font-semibold text-foreground mb-2">{offer.title}</h4>
+                    <div className="text-2xl sm:text-3xl font-bold text-primary mb-2">{offer.discount}</div>
+                    <p className="text-muted-foreground mb-4 text-sm sm:text-base">{offer.description}</p>
+                    <Button 
+                      onClick={() => handleSecureButtonClick('special_offer', 'contact')}
+                      variant="outline" 
+                      className="border-primary text-primary hover:bg-primary hover:text-primary-foreground button-shimmer"
+                    >
                       Learn More
                     </Button>
                   </div>
