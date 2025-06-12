@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Code, Palette, Smartphone, Cloud, Search, ShoppingCart, Check, Star, Zap, Camera, Megaphone, TrendingUp } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -218,7 +217,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="services" className="py-12 sm:py-16 lg:py-20 bg-background transition-colors duration-300">
+    <section id="services" className="py-12 sm:py-16 lg:py-20 bg-background text-foreground relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 lg:mb-16" data-aos="fade-up">
