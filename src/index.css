@@ -193,76 +193,32 @@ html {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, hsl(var(--primary-foreground) / 0.4), transparent);
-  transition: left 1000ms ease;
+  transition: left 600ms ease;
 }
 
 .button-shimmer:hover::before {
   left: 100%;
 }
 
-/* Mobile-optimized animations */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Enhanced mobile touch animations with theme support */
-@media (max-width: 768px) {
-  .hover-glow:active {
-    transform: scale(0.98);
-    box-shadow: 0 0 15px hsl(var(--primary) / 0.3);
-  }
-  
-  button:active {
-    transform: scale(0.95);
-  }
-}
-
-/* Float animation for background elements */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-/* Enhanced button animations with theme support */
+/* Enhanced button animations */
 button {
   transition: all 0.2s ease;
 }
 
 button:hover:not(:disabled) {
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px hsl(var(--primary) / 0.2);
 }
 
 button:active:not(:disabled) {
   transform: translateY(0);
+  box-shadow: 0 2px 6px hsl(var(--primary) / 0.15);
 }
 
-/* Form focus animations with theme support */
-input:focus, textarea:focus, select:focus {
-  transform: scale(1.02);
-  transition: all 0.2s ease;
-  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
-}
-
-/* Card hover animations with theme support */
-.card-hover {
-  transition: all 0.3s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 10px 25px hsl(var(--foreground) / 0.1);
+/* Theme-aware button focus states */
+button:focus:not(:disabled) {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
 }
 
 /* Enhanced CTA button animations */
@@ -286,6 +242,37 @@ input:focus, textarea:focus, select:focus {
   left: 100%;
 }
 
+/* Float animation for background elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Form focus animations with theme support */
+input:focus, textarea:focus, select:focus {
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
+}
+
+/* Card hover animations with theme support */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 25px hsl(var(--foreground) / 0.1);
+}
+
 /* Card layout utilities */
 .card-content-wrapper {
   display: flex;
@@ -299,4 +286,48 @@ input:focus, textarea:focus, select:focus {
 
 .card-content-footer {
   margin-top: auto;
+}
+
+/* Mobile-optimized animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Enhanced mobile touch animations with theme support */
+@media (max-width: 768px) {
+  .hover-glow:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.3);
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Theme transition animations */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Enhanced section background transitions */
+section {
+  transition: background-color 0.3s ease;
+}
+
+/* Button variants with improved theme support */
+.btn-primary {
+  @apply bg-primary text-primary-foreground hover:bg-primary/90;
+}
+
+.btn-secondary {
+  @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+}
+
+.btn-outline {
+  @apply border border-border bg-background hover:bg-accent hover:text-accent-foreground;
 }

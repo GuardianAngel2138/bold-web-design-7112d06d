@@ -1,9 +1,11 @@
+
 import React, { useState } from 'react';
-import { ExternalLink, Github, Eye, Calendar, Users, Code } from 'lucide-react';
+import { ExternalLink, Github, Eye, Calendar, Users } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import PortfolioCounters from './PortfolioCounters';
+import Swal from 'sweetalert2';
 
 const PortfolioSection = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -107,15 +109,84 @@ const PortfolioSection = () => {
     ? projects 
     : projects.filter(project => project.category === activeFilter);
 
+  const handleViewProject = (project: any) => {
+    Swal.fire({
+      title: project.title,
+      html: `
+        <div class="text-left space-y-4">
+          <img src="${project.image}" alt="${project.title}" class="w-full h-48 object-cover rounded-lg mb-4">
+          <p class="text-gray-600 dark:text-gray-300">${project.description}</p>
+          <div class="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <strong class="text-gray-800 dark:text-gray-200">Client:</strong><br>
+              <span class="text-gray-600 dark:text-gray-400">${project.client}</span>
+            </div>
+            <div>
+              <strong class="text-gray-800 dark:text-gray-200">Duration:</strong><br>
+              <span class="text-gray-600 dark:text-gray-400">${project.duration}</span>
+            </div>
+            <div>
+              <strong class="text-gray-800 dark:text-gray-200">Team Size:</strong><br>
+              <span class="text-gray-600 dark:text-gray-400">${project.team}</span>
+            </div>
+            <div>
+              <strong class="text-gray-800 dark:text-gray-200">Technologies:</strong><br>
+              <span class="text-gray-600 dark:text-gray-400">${project.technologies.join(', ')}</span>
+            </div>
+          </div>
+        </div>
+      `,
+      showCancelButton: true,
+      confirmButtonText: 'Visit Live Site',
+      cancelButtonText: 'View Code',
+      confirmButtonColor: '#3B82F6',
+      background: document.documentElement.classList.contains('dark') ? '#1f2937' : '#ffffff',
+      color: document.documentElement.classList.contains('dark') ? '#f3f4f6' : '#374151',
+      width: '600px',
+      customClass: {
+        popup: 'rounded-xl shadow-2xl'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.open(project.liveUrl, '_blank');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        window.open(project.githubUrl, '_blank');
+      }
+    });
+  };
+
+  const handleStartProject = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleViewAllProjects = () => {
+    Swal.fire({
+      title: 'All Projects',
+      text: 'Explore our complete portfolio of innovative solutions and successful projects.',
+      icon: 'info',
+      confirmButtonText: 'Contact Us for More',
+      confirmButtonColor: '#3B82F6',
+      background: document.documentElement.classList.contains('dark') ? '#1f2937' : '#ffffff',
+      color: document.documentElement.classList.contains('dark') ? '#f3f4f6' : '#374151',
+      customClass: {
+        popup: 'rounded-xl shadow-2xl'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleStartProject();
+      }
+    });
+  };
+
   return (
-    <section id="portfolio" className="py-20 bg-gray-50">
+    <section id="portfolio" className="py-20 bg-secondary/30 dark:bg-secondary/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Our <span className="gradient-text">Portfolio</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Discover our latest projects and see how we've helped businesses transform their digital presence
           </p>
         </div>
@@ -130,10 +201,10 @@ const PortfolioSection = () => {
               key={category.id}
               variant={activeFilter === category.id ? "default" : "outline"}
               onClick={() => setActiveFilter(category.id)}
-              className={`${
+              className={`button-shimmer ${
                 activeFilter === category.id 
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white' 
-                  : 'border-gray-300 text-gray-700 hover:border-blue-500'
+                  ? 'bg-gradient-to-r from-primary to-primary/80 text-primary-foreground' 
+                  : 'border-border text-foreground hover:border-primary hover:text-primary'
               }`}
             >
               {category.name}
@@ -144,7 +215,7 @@ const PortfolioSection = () => {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
-            <Card key={project.id} className="overflow-hidden hover-glow group cursor-pointer">
+            <Card key={project.id} className="overflow-hidden hover-glow group cursor-pointer bg-card border-border">
               <div className="relative">
                 <img 
                   src={project.image} 
@@ -157,11 +228,21 @@ const PortfolioSection = () => {
                   </Badge>
                 )}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
-                  <Button size="sm" variant="secondary" className="bg-white/90 hover:bg-white">
+                  <Button 
+                    size="sm" 
+                    variant="secondary" 
+                    className="bg-white/90 hover:bg-white text-gray-900"
+                    onClick={() => handleViewProject(project)}
+                  >
                     <Eye className="w-4 h-4 mr-2" />
                     View
                   </Button>
-                  <Button size="sm" variant="secondary" className="bg-white/90 hover:bg-white">
+                  <Button 
+                    size="sm" 
+                    variant="secondary" 
+                    className="bg-white/90 hover:bg-white text-gray-900"
+                    onClick={() => window.open(project.liveUrl, '_blank')}
+                  >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Live
                   </Button>
@@ -169,39 +250,49 @@ const PortfolioSection = () => {
               </div>
               
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{project.title}</h3>
-                <p className="text-gray-600 mb-4 text-sm">{project.description}</p>
+                <h3 className="text-xl font-semibold text-foreground mb-2">{project.title}</h3>
+                <p className="text-muted-foreground mb-4 text-sm">{project.description}</p>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.slice(0, 3).map((tech, index) => (
-                    <Badge key={index} variant="secondary" className="text-xs">
+                    <Badge key={index} variant="secondary" className="text-xs bg-secondary text-secondary-foreground">
                       {tech}
                     </Badge>
                   ))}
                   {project.technologies.length > 3 && (
-                    <Badge variant="secondary" className="text-xs">
+                    <Badge variant="secondary" className="text-xs bg-secondary text-secondary-foreground">
                       +{project.technologies.length - 3}
                     </Badge>
                   )}
                 </div>
 
-                <div className="space-y-2 text-sm text-gray-600 mb-4">
+                <div className="space-y-2 text-sm text-muted-foreground mb-4">
                   <div className="flex items-center">
-                    <Calendar className="w-4 h-4 mr-2" />
+                    <Calendar className="w-4 h-4 mr-2 text-primary" />
                     {project.duration}
                   </div>
                   <div className="flex items-center">
-                    <Users className="w-4 h-4 mr-2" />
+                    <Users className="w-4 h-4 mr-2 text-primary" />
                     {project.team}
                   </div>
                 </div>
 
                 <div className="flex space-x-2">
-                  <Button size="sm" variant="outline" className="flex-1">
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="flex-1 button-shimmer"
+                    onClick={() => window.open(project.liveUrl, '_blank')}
+                  >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Live Site
                   </Button>
-                  <Button size="sm" variant="outline" className="flex-1">
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="flex-1 button-shimmer"
+                    onClick={() => window.open(project.githubUrl, '_blank')}
+                  >
                     <Github className="w-4 h-4 mr-2" />
                     Code
                   </Button>
@@ -213,16 +304,26 @@ const PortfolioSection = () => {
 
         {/* CTA Section */}
         <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+          <div className="bg-gradient-to-r from-primary to-primary/80 rounded-2xl p-8 text-primary-foreground">
             <h3 className="text-3xl font-bold mb-4">Ready to Start Your Project?</h3>
             <p className="text-xl mb-6 opacity-90">
               Let's discuss how we can bring your vision to life with our expertise
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-gray-100">
+              <Button 
+                size="lg" 
+                variant="secondary" 
+                className="bg-background text-foreground hover:bg-accent button-shimmer"
+                onClick={handleViewAllProjects}
+              >
                 View All Projects
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 button-shimmer"
+                onClick={handleStartProject}
+              >
                 Start a Project
               </Button>
             </div>
