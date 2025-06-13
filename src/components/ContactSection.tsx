@@ -271,42 +271,42 @@ const ContactSection = () => {
     {
       icon: Mail,
       title: "Email Us",
-      details: "hello@avensora.com",
+      details: "info@avensora.in",
       description: "Send us an email anytime!",
-      action: () => window.open('mailto:hello@avensora.com', '_blank')
+      action: () => window.open('mailto:info@avensora.in', '_blank')
     },
     {
       icon: Phone,
       title: "Call Us",
-      details: "+1 (555) 123-4567",
+      details: "+91 730 625 9340",
       description: "Mon-Fri from 8am to 5pm.",
-      action: () => window.open('tel:+15551234567', '_blank')
+      action: () => window.open('tel:+917306259340', '_blank')
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      details: "123 Tech Street, Innovation District",
-      description: "San Francisco, CA 94105",
-      action: () => window.open('https://maps.google.com/?q=123+Tech+Street+San+Francisco', '_blank')
+      details: "Perumbavoor",
+      description: "Ernakulam, Kerala, India",
+      action: () => window.open('https://maps.app.goo.gl/9SAZ7zuvpNqfVUcc8', '_blank')
     }
   ];
 
   const services = [
     "Web Development",
-    "Mobile App Development",
-    "UI/UX Design",
+    // "Mobile App Development",
+    // "UI/UX Design",
     "E-commerce Solutions",
-    "Cloud Services",
+    // "Cloud Services",
     "SEO Optimization",
     "Other"
   ];
 
   const budgetRanges = [
-    "Under $5,000",
-    "$5,000 - $10,000",
-    "$10,000 - $25,000",
-    "$25,000 - $50,000",
-    "$50,000+",
+    "Under ₹6,000",
+    "₹6,000 - ₹10,000",
+    "₹10,000 - ₹25,000",
+    "₹25,000 - ₹50,000",
+    "₹50,000+",
     "Let's Discuss"
   ];
 
@@ -463,7 +463,7 @@ const ContactSection = () => {
                         type="tel"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        placeholder="+1 (555) 123-4567"
+                        placeholder="+91 987 456 3210"
                         maxLength={20}
                         className={`w-full text-sm sm:text-base bg-background border-border text-foreground ${formErrors.phone ? 'border-red-500' : ''}`}
                       />
