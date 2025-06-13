@@ -105,8 +105,8 @@ const PortfolioSection = () => {
     }
   ];
 
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
+  const filteredProjects = activeFilter === 'all'
+    ? projects
     : projects.filter(project => project.category === activeFilter);
 
   const handleViewProject = (project: any) => {
@@ -155,6 +155,34 @@ const PortfolioSection = () => {
     });
   };
 
+  //my addition
+  const handleComingSoonAlert = (type: 'live' | 'code') => {
+    Swal.fire({
+      title: type === 'live' ? 'Live Site Coming Soon 🚧' : 'Code is Private 👀',
+      html: type === 'live'
+        ? `<p>This project’s live version is still under wraps. Hang tight, it’ll be worth the wait!</p>`
+        : `<p>Source code is currently private. We’re cooking up something cool behind the scenes! 🔒</p>`,
+      icon: type === 'live' ? 'warning' : 'info',
+      background: document.documentElement.classList.contains('dark') ? '#1f2937' : '#ffffff',
+      color: document.documentElement.classList.contains('dark') ? '#f3f4f6' : '#374151',
+      confirmButtonText: 'Okay, Got it!',
+      confirmButtonColor: '#6366F1',
+      customClass: {
+        popup: 'rounded-2xl shadow-xl border border-primary',
+        title: 'text-2xl font-bold',
+        htmlContainer: 'text-base text-muted-foreground '
+      },
+      width: 500,
+      backdrop: `
+      rgba(0,0,0,0.5)
+      //url("https://i.gifer.com/ZZ5H.gif")
+      left top
+      no-repeat
+    `
+    });
+  };
+
+
   const handleStartProject = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -201,11 +229,10 @@ const PortfolioSection = () => {
               key={category.id}
               variant={activeFilter === category.id ? "default" : "outline"}
               onClick={() => setActiveFilter(category.id)}
-              className={`button-shimmer ${
-                activeFilter === category.id 
-                  ? 'bg-gradient-to-r from-primary to-primary/80 text-primary-foreground' 
+              className={`button-shimmer ${activeFilter === category.id
+                  ? 'bg-gradient-to-r from-primary to-primary/80 text-primary-foreground'
                   : 'border-border text-foreground hover:border-primary hover:text-primary'
-              }`}
+                }`}
             >
               {category.name}
             </Button>
@@ -217,8 +244,8 @@ const PortfolioSection = () => {
           {filteredProjects.map((project) => (
             <Card key={project.id} className="overflow-hidden hover-glow group cursor-pointer bg-card border-border">
               <div className="relative">
-                <img 
-                  src={project.image} 
+                <img
+                  src={project.image}
                   alt={project.title}
                   className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
@@ -228,18 +255,18 @@ const PortfolioSection = () => {
                   </Badge>
                 )}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
-                  <Button 
-                    size="sm" 
-                    variant="secondary" 
+                  <Button
+                    size="sm"
+                    variant="secondary"
                     className="bg-white/90 hover:bg-white text-gray-900"
                     onClick={() => handleViewProject(project)}
                   >
                     <Eye className="w-4 h-4 mr-2" />
                     View
                   </Button>
-                  <Button 
-                    size="sm" 
-                    variant="secondary" 
+                  <Button
+                    size="sm"
+                    variant="secondary"
                     className="bg-white/90 hover:bg-white text-gray-900"
                     onClick={() => window.open(project.liveUrl, '_blank')}
                   >
@@ -248,11 +275,11 @@ const PortfolioSection = () => {
                   </Button>
                 </div>
               </div>
-              
+
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold text-foreground mb-2">{project.title}</h3>
                 <p className="text-muted-foreground mb-4 text-sm">{project.description}</p>
-                
+
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.slice(0, 3).map((tech, index) => (
                     <Badge key={index} variant="secondary" className="text-xs bg-secondary text-secondary-foreground">
@@ -278,20 +305,21 @@ const PortfolioSection = () => {
                 </div>
 
                 <div className="flex space-x-2">
-                  <Button 
-                    size="sm" 
-                    variant="outline" 
+                  <Button
+                    size="sm"
+                    variant="outline"
                     className="flex-1 button-shimmer"
-                    onClick={() => window.open(project.liveUrl, '_blank')}
+                    onClick={() => handleComingSoonAlert('live')}
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Live Site
                   </Button>
-                  <Button 
-                    size="sm" 
-                    variant="outline" 
+                  <Button
+                    size="sm"
+                    variant="outline"
                     className="flex-1 button-shimmer"
-                    onClick={() => window.open(project.githubUrl, '_blank')}
+                    onClick={() => handleComingSoonAlert('code')}
+
                   >
                     <Github className="w-4 h-4 mr-2" />
                     Code
@@ -310,18 +338,18 @@ const PortfolioSection = () => {
               Let's discuss how we can bring your vision to life with our expertise
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                variant="secondary" 
-                className="bg-background text-foreground hover:bg-accent button-shimmer"
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-primary-foreground text-secondary-foreground hover:bg-primary-foreground/10 button-shimmer"
                 onClick={handleViewAllProjects}
               >
                 View All Projects
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 button-shimmer"
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-primary-foreground text-secondary-foreground hover:bg-primary-foreground/10 button-shimmer"
                 onClick={handleStartProject}
               >
                 Start a Project
