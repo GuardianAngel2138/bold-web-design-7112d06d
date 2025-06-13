@@ -33,17 +33,18 @@ const AboutSection = () => {
     role: "Creative Director",
     image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
     expertise: "UI/UX Design, Brand Strategy"
-  }, {
-    name: "Michael Davis",
-    role: "Technical Lead",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-    expertise: "DevOps, Cloud Infrastructure"
-  }, {
-    name: "Emily Rodriguez",
-    role: "Project Manager",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
-    expertise: "Agile Methodology, Client Relations"
-  }];
+  },// {
+  //   name: "Michael Davis",
+  //   role: "Technical Lead",
+  //   image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
+  //   expertise: "DevOps, Cloud Infrastructure"
+  // }, {
+  //   name: "Emily Rodriguez",
+  //   role: "Project Manager",
+  //   image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
+  //   expertise: "Agile Methodology, Client Relations"
+  // }
+   ];
   
   return (
     <section id="about" className="py-20 bg-secondary/30 dark:bg-secondary/10">
@@ -66,7 +67,7 @@ const AboutSection = () => {
               Our <span className="gradient-text">Story</span>
             </h3>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Founded in 2019, <span className="text-shimmer">Avensora</span> emerged from a simple vision: to bridge the gap 
+              Founded in 2025, <span className="text-shimmer">Avensora</span> emerged from a simple vision: to bridge the gap 
               between innovative technology and real-world business needs. What started as a small 
               team of passionate developers has grown into a full-service digital agency.
             </p>
@@ -122,11 +123,12 @@ const AboutSection = () => {
         </div>
 
         {/* Team */}
-        <div>
+        <div >
           <h3 className="text-3xl font-bold text-foreground text-center mb-12" data-aos="fade-up">
             Meet Our <span className="gradient-text">Leadership Team</span>
           </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="flex justify-center">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 gap-8">
             {team.map((member, index) => (
               <Card key={index} className="text-center hover-glow cursor-pointer bg-card border-border" data-aos="zoom-in" data-aos-delay={200 + index * 150}>
                 <CardContent className="p-6 card-content-wrapper">
@@ -151,6 +153,7 @@ const AboutSection = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
           </div>
         </div>
       </div>
